@@ -5,7 +5,6 @@ defineProps<{
   blog: any;
 }>();
 
-// Директива для показа скрытого текста заголовка
 const vTextAnimate = visibleHiddenText;
 </script>
 
@@ -27,7 +26,6 @@ const vTextAnimate = visibleHiddenText;
           {{ blog.desc }}
         </p>
 
-        <!-- Теги -->
         <div class="works__tags">
           <span v-for="tag in blog.categories" :key="tag.name" class="works__tag">
             <NuxtLink
@@ -53,8 +51,6 @@ const vTextAnimate = visibleHiddenText;
 .works__img {
   aspect-ratio: 1 / 0.57;
 }
-
-/*  */
 
 @media (max-width: 768px) {
   .works__desc {

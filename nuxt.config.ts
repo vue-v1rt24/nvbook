@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
     head: {
@@ -10,11 +9,6 @@ export default defineNuxtConfig({
     },
     pageTransition: { name: 'pageopacity', mode: 'out-in' },
   },
-
-  // Для заглушки
-  /*   routeRules: {
-    '/': { redirect: '/vn' },
-  }, */
 
   pages: true,
 
@@ -50,12 +44,10 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
 
-  // Настройка изображений (плагин @nuxt/image)
   image: {
     domains: [`${process.env.NUXT_PUBLIC_DOMAINS}`],
   },
 
-  // Настройка размеров разрешения экрана (плагин nuxt-viewport)
   viewport: {
     breakpoints: {
       screen1024: 1024,
@@ -70,11 +62,10 @@ export default defineNuxtConfig({
     },
   },
 
-  // Отправка почты. Плагин 'nuxt-mail'
   mail: {
     message: {
       from: 'pranaittech@yandex.ru',
-      to: 'info@pranait.ru', // вот так нескольким получателям: 'pranaittech@mail.ru, pranaittech@yandex.ru' либо ['info@pranait.ru, pranaittech@yandex.ru']
+      to: 'info@pranait.ru',
     },
     smtp: {
       host: 'smtp.yandex.ru',
@@ -82,32 +73,28 @@ export default defineNuxtConfig({
       secure: true,
       auth: {
         user: 'pranaittech',
-        pass: 'iktcqrrmgrwuizie', // пароль для приложений. Создаётся в учётной записи почты
+        pass: 'iktcqrrmgrwuizie',
       },
     },
   },
 
-  // Для карты яндекса / 'vue-yandex-maps/nuxt'
   yandexMaps: {
     apikey: 'f52ff3fc-0a45-4e8f-8507-e60a0a562e75',
   },
 
-  // Яндекс метрика
   yandexMetrika: {
     id: '100256014',
     webvisor: true,
   },
 
-  // Карта сайта. Плагин @nuxtjs/sitemap
   site: {
     url: 'https://pranait.ru',
     name: 'Разработка сайтов и медиа контента в Ставрополе',
   },
 
-  // Для сжатия файлов
   nitro: {
-    compressPublicAssets: true, // сжимает файлы в папке assets
-    minify: true, // минимизирует код
+    compressPublicAssets: true,
+    minify: true,
   },
 
   compatibilityDate: '2024-08-19',

@@ -22,16 +22,11 @@ defineProps<{
 //
 gsap.registerPlugin(ScrollTrigger);
 const mm = gsap.matchMedia();
-
-//
 const logosSwiper = ref<Swiper | null>(null);
 const swiperLogos = ref<HTMLDivElement | null>(null);
 
-//
 onMounted(() => {
-  // Блок с логотипами компаний
   gsap.set('.how_work_clients__logos_item', { clearProps: 'all' });
-
   gsap.to('.how_work_clients__logos_item', {
     x: 0,
     opacity: 1,
@@ -40,7 +35,6 @@ onMounted(() => {
     scrollTrigger: {
       trigger: '.how_work_clients',
       start: 'top top+=200',
-      // markers: true,
     },
   });
 

@@ -1,30 +1,24 @@
 <script setup lang="ts">
-// === Компонент для изменения количества просмотр записи
-
 import { localStorageUtil } from '@/utils/localStorage.utils';
 
 /*  */
 const props = defineProps<{
-  id: number; // id записи
-  count: number; // количество просмотров из админки
-  nameField: string; // название acf поля в админке
-  keyStorage: string; // название локального хранилища в браузере (localStorage)
+  id: number;
+  count: number;
+  nameField: string;
+  keyStorage: string;
 }>();
 
 //
 const { domains } = useRuntimeConfig().public;
 
-// Отправка изменения количества просмотра на сервер
 const sendCount = async () => {
   const res = await $fetch<number>(`${domains}/wp-json/count-view/change-count`, {
     method: 'POST',
     body: { id: props.id, nameField: props.nameField },
   });
-
-  // console.log(res);
 };
 
-// Запись в локальное хранилище
 const setLocalStorage = async () => {
   const loc = (localStorageUtil.getStorage(props.keyStorage) as number[]) || [];
 

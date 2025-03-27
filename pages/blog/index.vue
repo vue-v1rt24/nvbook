@@ -4,10 +4,8 @@ import '@/assets/css/works.css';
 
 const route = useRoute();
 
-// Получение данных из БД
 const { blogs } = await useQuery();
 
-// Подключение файла для фильтрации сортировки
 useHead({
   title: 'Блог | Статьи и новости компании PRANA IT',
   meta: [
@@ -29,35 +27,30 @@ useHead({
 const filterJs = ref<HTMLDivElement | null>(null);
 const filterInit = ref<any>(null);
 const activeClassBtn = ref('all');
-const viewSkeleton = ref(true); // для показа скелетона на карточках работ при загрузке страницы
+const viewSkeleton = ref(true);
 const pageBlog = ref<HTMLDivElement | null>(null);
 
-// Скрытие скелетона
 setTimeout(() => {
   viewSkeleton.value = false;
 }, 1000);
 
-// Выбор тега (для сортировки)
 const changeTag = (tagname: string) => {
   if (filterInit.value) {
     filterInit.value.filter(`.${tagname}`);
     activeClassBtn.value = tagname;
 
-    // Подъём на верх страницы при перестроении работ (когда фильтруем по тегам в модальном окне)
     pageBlog.value?.scrollIntoView({
       behavior: 'smooth',
     });
   }
 };
 
-// Изменение значения переменной при клике на кнопки фильтрации
 const changeNameBtm = (name: string) => {
   activeClassBtn.value = name;
 };
 
 //
 onMounted(() => {
-  // Запуск сортировки
   filterInit.value = mixitup(filterJs.value);
 });
 
@@ -71,7 +64,6 @@ watchEffect(() => {
 
 <template>
   <div>
-    <!-- Хлебные крошки -->
     <Breadcrumbs :breadcrumbs="[{ title: 'Блог' }]" />
 
     <!--  -->
@@ -82,7 +74,6 @@ watchEffect(() => {
       <div class="container">
         <h2 class="title_52">Блог</h2>
 
-        <!-- Кнопки -->
         <ButtonsTab
           v-if="blogs?.categories"
           v-show="!viewSkeleton"
@@ -93,7 +84,6 @@ watchEffect(() => {
       </div>
     </section>
 
-    <!-- Портфолио -->
     <section class="page_blog works_bx">
       <div v-if="viewSkeleton" class="works">
         <PageBlogSkeletonBlog v-for="w in 15" :key="w" />

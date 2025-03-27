@@ -10,17 +10,11 @@ useSeoMeta({
 
 <template>
   <section class="service_item">
-    <!-- Хлебные крошки -->
     <Breadcrumbs :breadcrumbs="[{ title: 'Заявка отправлена' }]" />
-
-    <!--  -->
     <div class="about_particles"></div>
-
-    <!--  -->
     <div class="container">
       <h1 class="service_item__h1">Заявка успешно отправлена</h1>
       <p class="service_item__desc">Мы свяжемся с Вами в ближайшее время</p>
-
       <UiButton
         title="Вернуться на главную"
         @click-btn="router.push('/')"

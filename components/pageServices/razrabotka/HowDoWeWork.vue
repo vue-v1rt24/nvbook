@@ -5,26 +5,18 @@ gsap.registerPlugin(ScrollTrigger);
 
 import type { TypeKakMyRabotaemVarianty } from '~/types/razrabotka.types';
 
-//
 const props = defineProps<{
   works: TypeKakMyRabotaemVarianty;
 }>();
 
-// console.log(props.works);
-
-//
 const viewport = useViewport();
 
-//
 let mm = gsap.matchMedia();
 
-//
 const countCart = computed(() => props.works.variants.length);
 
-// Управление модальным окно формы
 const { isOpenModal } = useOutsideModal();
 
-//
 onMounted(() => {
   mm.add('(min-width: 1300px)', () => {
     const tl = gsap.timeline({
@@ -32,7 +24,6 @@ onMounted(() => {
         trigger: '.how_do_we_work_sec',
         scrub: 0.5,
         pin: true,
-        // markers: true,
       },
     });
 
@@ -83,7 +74,6 @@ onMounted(() => {
     <div class="container">
       <h2 class="title_52">Как мы работаем?</h2>
 
-      <!--  -->
       <ul v-if="viewport.isGreaterOrEquals('screen1300')" class="how_do_we_work__list">
         <PageServicesRazrabotkaHowDoWeWorkItem
           v-for="(work, idx) in works.variants"
@@ -93,7 +83,6 @@ onMounted(() => {
           :work
         />
 
-        <!--  -->
         <li class="how_do_we_work__list_item__last cart_hdw">
           <div class="how_do_we_work__list_item__last_top">
             <span>Время становится лучшими</span>
@@ -114,11 +103,9 @@ onMounted(() => {
         </li>
       </ul>
 
-      <!--  -->
       <PageServicesRazrabotkaSliderHorizontal v-else :how-work-cards="works.variants" />
     </div>
 
-    <!--  -->
     <div v-if="viewport.isGreaterOrEquals('screen1300')" class="how_do_we_work_line_text_wrap">
       <div class="how_do_we_work_line_text">
         <PageServicesRazrabotkaLineText
@@ -262,7 +249,6 @@ onMounted(() => {
   transform: translateX(-50%);
   left: 50%;
   pointer-events: none;
-  /* outline: 1px solid red; */
 }
 
 .how_do_we_work_line_text {

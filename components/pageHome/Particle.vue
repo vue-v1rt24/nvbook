@@ -1,16 +1,13 @@
 <script setup lang="ts">
 import { particle } from '@/assets/libs/particle';
 
-//
 defineProps<{
   title?: string;
   desc?: string;
 }>();
 
-//
 let stopAnimVal: () => void;
 
-//
 onMounted(() => {
   const { stopActions } = particle();
   stopAnimVal = stopActions;
@@ -59,61 +56,6 @@ onUnmounted(() => {
   text-align: center;
   color: var(--colorTextWhite);
   padding: 0 30px;
-
-  /* Шапка деда Мороза */
-  /* &::before {
-    content: '';
-    position: absolute;
-    top: -24px;
-    left: 50%;
-    transform: rotate(340deg);
-    margin-left: -457px;
-    width: 60px;
-    height: 60px;
-    background-image: url(/img/shapka-ded-moroza.svg);
-    background-repeat: no-repeat;
-    background-position: 0px 0px;
-    background-size: 100% 100%;
-  }
-
-  @media (min-width: 1925px) {
-    &::before {
-      margin-left: -461px;
-    }
-  }
-
-  @media (max-width: 1199px) {
-    &::before {
-      top: -20px;
-      width: 45px;
-      height: 45px;
-      margin-left: -350px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    &::before {
-      top: -18px;
-      width: 40px;
-      height: 40px;
-      margin-left: -300px;
-    }
-  }
-
-  @media (max-width: 636px) {
-    &::before {
-      margin-left: -183px;
-    }
-  }
-
-  @media (max-width: 576px) {
-    &::before {
-      top: -9px;
-      width: 20px;
-      height: 20px;
-      margin-left: -151px;
-    }
-  } */
 }
 
 :global(.decisions__title span) {
@@ -150,7 +92,6 @@ onUnmounted(() => {
   background-position: center;
 }
 
-/* ==================== Медиа запросы */
 @media (min-width: 1925px) {
   .decisions_sec {
     height: 100vh;

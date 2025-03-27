@@ -1,8 +1,6 @@
 <script setup lang="ts">
 const { data } = await useFetch('/api/pages/services');
-// console.log(data.value);
 
-//
 useSeoMeta({
   title: data.value?.metaTags.metaTitle,
   description: data.value?.metaTags.metaDescription,
@@ -11,7 +9,6 @@ useSeoMeta({
 
 <template>
   <section class="service">
-    <!-- Хлебные крошки -->
     <Breadcrumbs :breadcrumbs="[{ title: 'Услуги' }]" dark />
 
     <!--  -->
@@ -39,7 +36,6 @@ useSeoMeta({
         </ul>
       </div>
 
-      <!-- Виджет Яндекса -->
       <div
         class="service_reviews"
         v-html="data?.pageServices.pageServicesVidzhetRejtingaYandeksa"

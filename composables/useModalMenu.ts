@@ -19,7 +19,6 @@ export const useModalMenu = () => {
     const hh = headerMenu.offsetHeight;
 
     if (wh < hh) {
-      // headerMenu.style.height = wh - 32 + 'px'; // так было не учитывая нижнее фиксированное меню
       headerMenu.style.height = wh - fixedMenuHeight.value + 'px';
     }
   };

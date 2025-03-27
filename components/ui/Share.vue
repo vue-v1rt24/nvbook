@@ -127,7 +127,6 @@ onMounted(() => {
       </a>
     </div>
 
-    <!-- Оповещение о копировании ссылки -->
     <NotificationCopy class="notification_animate" />
   </div>
 </template>

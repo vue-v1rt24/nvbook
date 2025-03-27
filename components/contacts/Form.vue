@@ -2,14 +2,12 @@
 import { useVuelidate } from '@vuelidate/core';
 import { required, email, minLength } from '@vuelidate/validators';
 
-//
 const mail = useMail();
 
 const theme = useTheme();
 
 const contactForm = ref<HTMLFormElement | null>(null);
 
-// === Поля формы
 const fields = reactive({
   username: '',
   email: '',
@@ -17,7 +15,6 @@ const fields = reactive({
   svyaz: 'Звонок',
 });
 
-// === Сброс формы
 const resetForm = () => {
   fields.username = '';
   fields.email = '';
@@ -25,13 +22,11 @@ const resetForm = () => {
   fields.svyaz = 'Звонок';
 };
 
-// === Валидация формы
 const rules = computed(() => ({
   username: {
     required,
   },
   email: {
-    // required,
     email,
   },
   phone: {
@@ -42,11 +37,9 @@ const rules = computed(() => ({
 
 const v$ = useVuelidate(rules, fields);
 
-// === Формирование письма
 const setMail = () => {
   const message = {
     subject: 'Заявка с сайта pranait.ru',
-    // text: 'Текстовое сообщение',
     html: `
           <div>Имя: <strong>${fields.username}</strong></div>
           <div>Номер телефона: <strong>${fields.phone}</strong></div>
@@ -59,12 +52,9 @@ const setMail = () => {
   return message;
 };
 
-// === Отправка почты
 const sendHandler = async () => {
-  // Запускаем валидацию
   v$.value.$touch();
 
-  // Если есть ошибки в валидации
   if (v$.value.$error) {
     contactForm.value?.scrollIntoView({
       behavior: 'smooth',
@@ -73,16 +63,9 @@ const sendHandler = async () => {
     return;
   }
 
-  // Отправка письма
   await mail.send(setMail());
-
-  // Очищение полей
   resetForm();
-
-  // Сброс валидации
   v$.value.$reset();
-
-  // Перенаправление нап страницу "Спасибо"
   await navigateTo('/success');
 };
 </script>
@@ -317,7 +300,6 @@ const sendHandler = async () => {
   -webkit-backdrop-filter: blur(29.5px);
   border-radius: 47.5px;
   padding: 12px 26px;
-  /* cursor: pointer; */
   outline: 2px solid transparent;
   transition: color 0.3s, outline 0.3s;
 

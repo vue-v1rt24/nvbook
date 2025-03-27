@@ -2,27 +2,20 @@
 import visibleHiddenText from '@/directives/visibleHiddenText';
 import type { TypeWork } from '~/types/widgetWorks.types';
 
-//
 const props = defineProps<{
   item: TypeWork;
 }>();
 
-//
 const emit = defineEmits<{
   routePath: [link: string];
 }>();
 
-// Директива для показа скрытого текста заголовка
 const vTextAnimate = visibleHiddenText;
 
-//
 const video = ref<HTMLVideoElement | null>(null);
 
-//
 const isDirect = computed(() => props.item.homePreview.vyborText);
-
 const direct = computed(() => (isDirect.value ? 'direct' : 'video'));
-
 const classesFilter = computed(() => {
   let cl = '';
 
@@ -33,7 +26,6 @@ const classesFilter = computed(() => {
   return cl;
 });
 
-// Запуск видео
 let isLoad: any = null;
 
 const loadVideo = () => {
@@ -64,7 +56,6 @@ const videoHover = () => {
   }
 };
 
-// Открытие модального окна с работой
 const sendWork = (link: string) => {
   emit('routePath', link);
 };
@@ -81,7 +72,6 @@ const sendWork = (link: string) => {
         height="450"
       />
 
-      <!-- По наведению текст -->
       <div v-if="isDirect" class="works__item_more_detailed_bx">
         <a
           @click.prevent="sendWork(item.slug)"
@@ -110,7 +100,6 @@ const sendWork = (link: string) => {
         </a>
       </div>
 
-      <!-- По наведению видео -->
       <div class="works__item_more_detailed_bx" v-else @mouseover="videoHover">
         <a
           @click.prevent="sendWork(item.slug)"
@@ -134,7 +123,6 @@ const sendWork = (link: string) => {
         {{ item.homePreview.zagolovok }}
       </NuxtLink>
 
-      <!-- Теги -->
       <div class="works__tags">
         <span v-for="cat in item.portfolioCategories?.nodes" :key="cat.name" class="works__tag">
           <NuxtLink

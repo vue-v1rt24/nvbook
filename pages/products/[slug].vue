@@ -1,54 +1,20 @@
 <script setup lang="ts">
-// import { useQueryFile } from '~/composables/services/useQueryFile';
-
-//
 const router = useRouter();
-const route = useRoute();
 
 //
 useSeoMeta({
   title: 'Продукция',
   description: 'Описание',
 });
-
-// Получение данных
-// const { dataServiceFile } = await useQueryFile(route.params.slug);
-
-// Скачивание файла
-/* const loadFile = async () => {
-  if (!dataServiceFile.value?.filePath) return;
-
-  const link = document.createElement('a');
-  link.setAttribute('href', dataServiceFile.value.filePath);
-  link.setAttribute('target', '_blank');
-  link.setAttribute('download', '');
-  link.style.display = 'none';
-
-  document.body.append(link);
-  link.click();
-  link.remove();
-}; */
 </script>
 
 <template>
   <section class="service_item">
-    <!-- Хлебные крошки -->
     <Breadcrumbs :breadcrumbs="[{ title: 'Страница продукции' }]" />
-
-    <!--  -->
     <div class="about_particles"></div>
-
-    <!--  -->
     <div class="container">
       <h1 class="service_item__h1">Раздел находится в разработке</h1>
       <p class="service_item__desc">Совсем скоро он появится</p>
-
-      <!-- <UiButton
-        title="Скачать презентацию"
-        class="service_item__btn download_pdf"
-        @click-btn="loadFile"
-      /> -->
-
       <UiButton title="Вернуться назад" @click-btn="router.back" class="service_item__btn" />
     </div>
   </section>

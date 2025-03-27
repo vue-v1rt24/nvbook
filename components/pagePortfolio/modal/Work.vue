@@ -1,45 +1,32 @@
 <script setup lang="ts">
-// Модальное окно полной статьи
-
 import * as FancyboxAll from '@fancyapps/ui';
 import { type TypeWorkPortfolio } from '@/types/home-page/works.types';
 
 const { Fancybox } = FancyboxAll;
-
-//
 const router = useRouter();
 const viewport = useViewport();
-
-// Управление модальным окно формы
 const { isOpenModal } = useOutsideModal();
-
-//
 const lazyLoad = ref<HTMLImageElement[]>([]);
 const hashName = ref('');
 
-//
 const props = defineProps<{
   open: boolean;
   dataWork: TypeWorkPortfolio;
 }>();
 
-//
 const emit = defineEmits<{
   closeWork: [name: string];
 }>();
 
-//
 const closeModal = (name: string) => {
   hashName.value = name;
   Fancybox.close();
 };
 
-//
 onUnmounted(() => {
   Fancybox.destroy();
 });
 
-//
 const loadImgScroll = () => {
   const options = {
     root: null,
@@ -83,7 +70,6 @@ watchEffect(() => {
   }
 });
 
-// Клик по кнопке "Смотреть отзыв"
 const viewReview = () => {
   if (props.dataWork.review.reviewZagruziteFajl?.node.mediaItemUrl) {
     Fancybox.show([
@@ -103,15 +89,12 @@ const viewReview = () => {
   <div id="work_full_article" class="work_full_article">
     <div class="work_full_article__top">
       <div class="work_full_article__left">
-        <!-- Заголовок -->
         <div class="work_full_article__title">{{ dataWork.zagolovok }}</div>
 
-        <!-- Описание -->
         <p class="work_full_article__desc">
           {{ dataWork.fullWorkOpisanieVypolnennojRaboty }}
         </p>
 
-        <!-- Теги -->
         <div class="works__tags">
           <span
             v-for="hash in dataWork.categories"
@@ -144,9 +127,7 @@ const viewReview = () => {
       </div>
     </div>
 
-    <!-- Содержание -->
     <div class="work_full_article__content">
-      <!-- Картинки в ПК -->
       <div v-if="viewport.isGreaterOrEquals('screen768')" class="work_full_article__content_pc">
         <div
           v-for="(photo, idx) in dataWork.fullWorkFotoVypolnennojRabotyPc"
@@ -164,13 +145,11 @@ const viewReview = () => {
         </div>
       </div>
 
-      <!-- В моб. версии -->
       <div v-else class="work_full_article__content_mob">
         <p class="work_full_article__content_mob_desc">
           {{ dataWork.fullWorkDopDescMob }}
         </p>
 
-        <!-- Картинки в МОБ -->
         <div class="work_full_article__content_mob_imgs">
           <div
             v-for="(photo, idx) in dataWork.fullWorkFotoVypolnennojRabotyVMob"
@@ -194,7 +173,6 @@ const viewReview = () => {
       </div>
     </div>
 
-    <!-- Команда проекта -->
     <div class="work_full_article__roject_team work_roject_team">
       <div class="work_roject_team___title">Команда проекта</div>
 
@@ -220,7 +198,6 @@ const viewReview = () => {
       </div>
     </div>
 
-    <!-- Кнопки -->
     <div class="work_full_article__btns">
       <UiButton
         v-if="dataWork.review.reviewNazvanieKompanii"
@@ -238,7 +215,6 @@ const viewReview = () => {
       />
     </div>
 
-    <!-- Нравится и поделиться -->
     <ClientOnly>
       <PageHomeWorksModalLiked
         :id="dataWork.id"
@@ -247,7 +223,6 @@ const viewReview = () => {
       />
     </ClientOnly>
 
-    <!--  -->
     <button type="button" class="close_modal" data-fancybox-close>
       <img src="/img/close.svg" alt="" />
     </button>

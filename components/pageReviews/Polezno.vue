@@ -3,11 +3,8 @@ import { localStorageUtil } from '~/utils/localStorage.utils';
 
 //
 const { domains } = useRuntimeConfig().public;
-
-// Хранилище для отметок понравившимся
 const likes = useCountLikes();
 
-//
 const props = defineProps<{
   id: number;
   count: number;
@@ -15,26 +12,22 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
-  currentCount: [val: number]; // возвращает в родительский компонент новое количество с сервера (возможно не используется)
-  currentChecked: [val: boolean]; // возвращает в родительский компонент информацию об состоянии активности кнопки (возможно не используется)
+  currentCount: [val: number];
+  currentChecked: [val: boolean];
 }>();
 
-// Ключ хранилища
 const nameStorage = 'useful';
 
 //
 const isCheckedCount = ref(false);
 const countLocal = ref<number>(props.count);
 
-// Установка количества понравившимся
 likes.value = props.count;
 
-// Получение данных из хранилища
 const getLocaleStorage = () => {
   return (localStorageUtil.getStorage(nameStorage) as number[]) || [];
 };
 
-// При начальной загрузки страницы
 const loadPage = () => {
   const res = getLocaleStorage();
 
@@ -44,7 +37,6 @@ const loadPage = () => {
   }
 };
 
-// Запрос на сервер
 const sendChangeCount = async (link: string) => {
   try {
     const resCount = await $fetch<number>(`${domains}/wp-json/${link}/change-count`, {
@@ -53,7 +45,7 @@ const sendChangeCount = async (link: string) => {
     });
 
     countLocal.value = resCount;
-    likes.value = resCount; // Установка количества понравившимся
+    likes.value = resCount;
 
     emit('currentCount', countLocal.value);
 
@@ -71,7 +63,6 @@ const sendChangeCount = async (link: string) => {
   }
 };
 
-// Клик по кнопке
 const changeCount = () => {
   isCheckedCount.value = !isCheckedCount.value;
 

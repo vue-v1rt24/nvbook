@@ -7,8 +7,6 @@ const props = defineProps<{
   title: string;
   service: TypeService[];
 }>();
-
-// console.log(props.service);
 </script>
 
 <template>
@@ -32,10 +30,6 @@ const props = defineProps<{
           v-html="item.servicesContent.kratkoeOpisanieNaGlavnoj"
           :class="['description', key === 0 && 'description_animate']"
         ></p>
-
-        <!-- <div class="services__cards__link">
-          <UiLinkText :link="`/services/${item.slug}`" title="Перейти" />
-        </div> -->
       </div>
     </div>
   </div>
@@ -123,7 +117,6 @@ const props = defineProps<{
   padding-top: 24px;
 }
 
-/* ==================== Медиа запросы */
 @media (hover: none) and (pointer: coarse) {
   .services__card__item {
     opacity: 1;

@@ -13,10 +13,8 @@ useSeoMeta({
 <template>
   <div>
     <section class="reviews_bx">
-      <!-- Хлебные крошки -->
       <Breadcrumbs :breadcrumbs="[{ title: 'Отзывы' }]" dark />
 
-      <!--  -->
       <div class="container">
         <h2 class="title_52">
           Отзывы наших <br />

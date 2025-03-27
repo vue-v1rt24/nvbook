@@ -4,22 +4,15 @@ import { required, email, minLength } from '@vuelidate/validators';
 
 import { type TypeSetMailMessage } from '@/types/form.types';
 
-// Управление модальным окном
 const { isOpenModal, dopDate, isVisibleBtnProject, isSendFormSuccess } = useOutsideModal();
-
-//
 const mail = useMail();
-
-//
 const outsideForm = ref<HTMLFormElement | null>(null);
 const openModalRef = ref(false);
 const isOpenSelectRef = ref<boolean>(false);
 const whereFromRef = ref('Откуда узнали про PRANA IT?');
 const filePath = ref<string | null>(null);
-
 let raschet: string = '';
 
-// === Поля формы
 const fields = reactive({
   nameUser: '',
   phone: '',
@@ -30,7 +23,6 @@ const fields = reactive({
   whereFrom: '',
 });
 
-// === Сброс формы
 const resetForm = () => {
   fields.nameUser = '';
   fields.phone = '';
@@ -43,7 +35,6 @@ const resetForm = () => {
   raschet = '';
 };
 
-// === Валидация формы
 const rules = computed(() => {
   const localRules = {
     nameUser: {
@@ -53,10 +44,9 @@ const rules = computed(() => {
       required,
       minLength: minLength(18),
     },
-    email: {}, // для типизации
+    email: {},
   };
 
-  // Динамическая валидация по почты (если что-то в поле почты введём, то добавим валидацию)
   if (fields.email) {
     localRules.email = {
       required,
@@ -70,7 +60,6 @@ const rules = computed(() => {
 
 const v$ = useVuelidate(rules, fields);
 
-// === Обработка загружаемого файла
 const loadFile = (evt: Event) => {
   const target = evt.target as HTMLInputElement;
 
@@ -79,7 +68,6 @@ const loadFile = (evt: Event) => {
   }
 };
 
-// === Выбор "Откуда узнали про PRANA IT"
 const setWhereFrom = (evt: MouseEvent) => {
   const target = evt.target as HTMLDialogElement;
 
@@ -89,12 +77,10 @@ const setWhereFrom = (evt: MouseEvent) => {
   }
 };
 
-// === Открытие/Закрытие селекта
 const openSelect = () => {
   isOpenSelectRef.value = !isOpenSelectRef.value;
 };
 
-// === Сохранение картинки и формирование пути до неё
 const saveImage = () => {
   return new Promise(async (resolve, reject) => {
     const fd = new FormData();
@@ -114,11 +100,9 @@ const saveImage = () => {
   });
 };
 
-// === Формирование письма
 const setMail = () => {
   const message: TypeSetMailMessage = {
     subject: 'Заявка с сайта pranait.ru',
-    // text: 'Текстовое сообщение',
     html: `
           <div>Имя: <strong>${fields.nameUser}</strong></div>
           <div>Номер телефона: <strong>${fields.phone}</strong></div>
@@ -152,12 +136,9 @@ const setMail = () => {
   return message;
 };
 
-// === Отправка формы
 const sendHandler = async () => {
-  // Запускаем валидацию
   v$.value.$touch();
 
-  // Если есть ошибки в валидации
   if (v$.value.$error) {
     outsideForm.value?.scrollTo({
       top: 0,
@@ -167,7 +148,6 @@ const sendHandler = async () => {
     return;
   }
 
-  // Проверяем загрузку файла в форме
   if (fields.file) {
     try {
       await saveImage();
@@ -176,43 +156,34 @@ const sendHandler = async () => {
     }
   }
 
-  // Отправка письма
   await mail.send(setMail());
 
-  // Очищение полей
   resetForm();
 
-  // Сброс валидации
   v$.value.$reset();
 
-  // Флаг, что форма отправлена (передаётся в другие компоненты, как emit)
   isSendFormSuccess().value = true;
 
   setTimeout(() => {
     isSendFormSuccess().value = false;
   }, 100);
 
-  // Закрытие модального окна
   closeModal();
 
-  // Перенаправление нап страницу "Спасибо"
   await navigateTo('/success');
 };
 
-// === Открытие модального окна
 const openModal = () => {
   document.body.classList.add('open_modal');
   openModalRef.value = true;
 };
 
-// === Закрытие модального окна
 const closeModal = () => {
   openModalRef.value = false;
   isOpenModal().value = false;
   document.body.classList.remove('open_modal', 'open_menu');
 };
 
-// Открытие модального окна
 watch(
   () => isOpenModal().value,
   (val) => {
@@ -222,7 +193,6 @@ watch(
   },
 );
 
-// Формирование дополнительных данных (они приходят из вне)
 watch(
   () => dopDate().value,
   (val) => {
@@ -291,11 +261,6 @@ watch(
           <input type="checkbox" value="Брендинг" v-model="fields.project" />
           <span>Брендинг</span>
         </label>
-
-        <!-- <label class="outside__inp_var react">
-          <input type="checkbox" value="Продвижение" v-model="fields.project" />
-          <span>Продвижение</span>
-        </label> -->
 
         <label class="outside__inp_var react">
           <input type="checkbox" value="Фото и видео" v-model="fields.project" />

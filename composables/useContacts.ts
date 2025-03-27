@@ -29,7 +29,6 @@ export const useContacts = async () => {
     `,
   };
 
-  // Получение данных
   const { data: dataContacts } = await useFetch(graphqlUrl, {
     query: queryContacts,
 

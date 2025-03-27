@@ -1,10 +1,4 @@
 <script setup lang="ts">
-/* 
-Компонент выводит все статьи блога в слайдере.
-Если передать id, то эта запись будет исключена из выборки.
-Пример можно посмотреть на странице полной записи блога.
-*/
-
 import { useQueryNotIn } from '~/composables/blog/useQueryNotIn';
 
 import Swiper from 'swiper';
@@ -14,7 +8,6 @@ import 'swiper/css/scrollbar';
 
 import 'assets/css/swiper-global.css';
 
-//
 const props = withDefaults(
   defineProps<{
     id?: number;
@@ -25,12 +18,10 @@ const props = withDefaults(
   },
 );
 
-// Запрос на получение всех записей, кроме текущей (для вывода в слайдере)
 const { blogsAllNotIn } = await useQueryNotIn(props.id);
 
 //
 onMounted(() => {
-  // Вывод других статей
   const swiperArticleFull = document.querySelector<HTMLDivElement>('.swiper_article_full')!;
 
   if (swiperArticleFull) {
@@ -91,8 +82,6 @@ onMounted(() => {
   max-width: 100%;
   background-color: rgba(255, 255, 255, 0.2);
 }
-
-/* ============= Медиа запросы */
 
 @media (max-width: 1365px) {
   .swiper_article_full {

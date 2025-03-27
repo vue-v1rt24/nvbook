@@ -4,8 +4,6 @@ import type { TypeRazrabotkaVariantyItem } from '~/types/razrabotka.types';
 const props = defineProps<{
   variant: TypeRazrabotkaVariantyItem;
 }>();
-
-// console.log(props.variant);
 </script>
 
 <template>

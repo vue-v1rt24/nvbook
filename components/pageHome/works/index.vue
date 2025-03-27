@@ -6,10 +6,8 @@ import {
   type TypeWork,
 } from '@/types/home-page/works.types';
 
-// Получение ссылки на API
 const { graphqlUrl } = useRuntimeConfig().public;
 
-//
 const route = useRoute();
 const router = useRouter();
 
@@ -17,7 +15,6 @@ const router = useRouter();
 const open = ref(false);
 const dataWork = useState<TypeWork>('work');
 
-// Запрос на получение данных
 const blogsPortfolios = {
   query: `
   {
@@ -116,7 +113,6 @@ const { data: articles } = await useFetch(graphqlUrl, {
   },
 });
 
-// Запрос на получение одной записи работы
 const getWork = async (id: number) => {
   const workQuery = {
     query: `
@@ -238,7 +234,6 @@ const showWork = async () => {
   }
 };
 
-// После закрытия модального окна
 const closeWork = () => {
   router.push('/');
   open.value = false;

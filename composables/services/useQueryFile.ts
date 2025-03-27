@@ -1,4 +1,3 @@
-// Запрос на получение файла PDF
 import type { TypeServiceFile } from '~/types/services.types';
 
 export const useQueryFile = async (slug: string) => {

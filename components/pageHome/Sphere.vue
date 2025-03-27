@@ -4,14 +4,12 @@ import InertiaPlugin from 'gsap/InertiaPlugin';
 import { Draggable } from 'gsap/Draggable';
 gsap.registerPlugin(InertiaPlugin, Draggable);
 
-//
 defineProps<{
   sphere: {
     nazvanie: string;
   }[];
 }>();
 
-//
 onMounted(() => {
   let idx = 10;
   const cursor = document.querySelector<HTMLDivElement>('.cursor')!;
@@ -86,7 +84,6 @@ onMounted(() => {
   right: 0;
 }
 
-/*  */
 .sphere__items {
   position: absolute;
   top: 180px;
@@ -111,7 +108,6 @@ onMounted(() => {
   z-index: -1;
 }
 
-/*  */
 .decisions__title {
   position: absolute;
   bottom: 157px;
@@ -134,7 +130,6 @@ onMounted(() => {
   background-clip: text;
 }
 
-/*  */
 .btn_die {
   position: relative;
   font-family: var(--fontFamily-NeueMachina);
@@ -149,9 +144,7 @@ onMounted(() => {
   border: none;
   padding: 42px 52px;
 }
-/*  */
 
-/*  */
 .btn_die_1 {
   position: absolute;
   top: 0;
@@ -206,7 +199,6 @@ onMounted(() => {
   left: 15.3vw;
 }
 
-/* ==================== Медиа запросы */
 @media (max-width: 1900px) {
   .sphere__items {
     width: 92vw;

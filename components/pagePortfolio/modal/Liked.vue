@@ -1,28 +1,23 @@
 <script setup lang="ts">
 import { localStorageUtil } from '~/utils/localStorage.utils';
 
-//
 const { domains } = useRuntimeConfig().public;
 
-//
 const props = defineProps<{
   id: number | undefined;
   slug: string | undefined;
   countLike: number;
 }>();
 
-//
 const nameStorage = 'works';
 const count = ref<number>(0);
 const isWhatRequest = ref(false);
 const isCountVisible = ref(false);
 
-// Получение данных из хранилища
 const getStorage = () => {
   return localStorageUtil.getStorage(nameStorage) || {};
 };
 
-// При начальной загрузки страницы
 const loadData = () => {
   if (props.slug) {
     const res = getStorage();
@@ -37,7 +32,6 @@ const loadData = () => {
   }
 };
 
-//
 watchEffect(() => {
   if (props.slug) {
     count.value = props.countLike;
@@ -45,7 +39,6 @@ watchEffect(() => {
   }
 });
 
-// Запрос на сервер для изменения количества понравившимся
 const toggleLicked = async () => {
   if (props.slug) {
     isWhatRequest.value = !isWhatRequest.value;

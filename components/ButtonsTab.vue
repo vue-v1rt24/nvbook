@@ -12,18 +12,13 @@ const emit = defineEmits<{
   changeTag: [title: string];
 }>();
 
-// Подсчёт всех записей блога
 const allCount = computed(() => props.categories.reduce((acc, item) => (acc += item.count), 0));
-
-// Активный класс кнопок
 const activeClassBtnLocal = ref(props.activeClassBtn);
 
-// Выбор кнопок дочерней категории
 const changeNameBtm = (name: string) => {
   emit('changeTag', name);
 };
 
-//
 watch(
   () => props.activeClassBtn,
   (val) => {

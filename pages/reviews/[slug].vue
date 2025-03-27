@@ -3,15 +3,13 @@ import * as FancyboxAll from '@fancyapps/ui';
 import { useReviewSingle } from '~/composables/review/useReviewSingle';
 
 import '@/assets/css/video.css';
-import 'assets/css/video-fancybox.css'; // ещё используется в: components\pageBlog\VideoOutput.vue
+import 'assets/css/video-fancybox.css';
 
 //
 const route = useRoute();
 
 const { dataReview } = await useReviewSingle(route.params.slug);
-// console.log(dataReview);
 
-//
 if (!dataReview) {
   throw createError({
     statusCode: 404,
@@ -19,7 +17,6 @@ if (!dataReview) {
   });
 }
 
-//
 useSeoMeta({
   title: dataReview?.metaTags.metaTitle,
   description: dataReview?.metaTags.metaDescription,
@@ -28,7 +25,6 @@ useSeoMeta({
 //
 const { isOpenModal } = useOutsideModal();
 
-//
 const { Fancybox } = FancyboxAll;
 const videoFancyboxBx = ref<HTMLDivElement | null>(null);
 
@@ -40,7 +36,6 @@ const condition = ref({
 
 //
 onMounted(() => {
-  // Модальное окно видео
   if (videoFancyboxBx.value) {
     videoFancyboxBx.value.addEventListener('click', (evt) => {
       const target = evt.target as HTMLDivElement;
@@ -68,7 +63,6 @@ onMounted(() => {
           closeButton: false,
           on: {
             done() {
-              // Клонируем и вставляем в модальное окно видео всё содержимое из компонента: LikeInModalVideo.vue
               const videoFancyboxModal =
                 document.querySelector<HTMLDivElement>('.video_fancybox_modal')!;
 
@@ -77,15 +71,12 @@ onMounted(() => {
 
               fancyboxContent.append(cloneVideoHart);
 
-              // Кликаем по "Нравится" в модальном окне
               workFullArticleHart.addEventListener('click', () => {
                 workFullArticleHart.classList.toggle('active');
                 workFullArticleHartHtml.classList.toggle('active');
 
-                // Кликаем по кнопке "Нравится". Она находится в компоненте: Polezno.vue
                 document.querySelector<HTMLDivElement>('.rticle_full_useful__btn')?.click();
 
-                // Изменение количества понравившимся в модальном окне
                 if (workFullArticleHart.classList.contains('active')) {
                   count.textContent = String(+count.textContent! + 1);
                 } else {
@@ -94,7 +85,6 @@ onMounted(() => {
               });
             },
             close() {
-              // Записываем значение из модального окна
               condition.value.count = +count.textContent!;
             },
           },
@@ -119,7 +109,6 @@ onMounted(() => {
 
         <!--  -->
         <div class="article_full_top">
-          <!-- Метка категории -->
           <div class="article_full_tag">
             <div>
               <span class="works__tag_hash">#</span>
@@ -127,12 +116,10 @@ onMounted(() => {
             </div>
           </div>
 
-          <!-- Дата записи -->
           <div v-if="dataReview?.date" class="article_full_data">
             {{ dateFormat(dataReview.date) }}
           </div>
 
-          <!-- Счётчик просмотров записи -->
           <View
             v-if="dataReview?.databaseId"
             :id="dataReview.databaseId"
@@ -141,14 +128,11 @@ onMounted(() => {
             keyStorage="view_review"
           />
 
-          <!-- Счётчик количества понравившимся отзыв -->
           <PageBlogViewLike />
         </div>
 
-        <!-- Заголовок -->
         <h1 class="article_full_h1">{{ dataReview?.title }}</h1>
 
-        <!-- Видео -->
         <div class="page_video article_full">
           <div class="video_fancybox_bx" ref="videoFancyboxBx">
             <div class="video_fancybox_parent_js">
@@ -171,7 +155,6 @@ onMounted(() => {
                 class="article_full_p desc_video wp_content"
               ></div>
 
-              <!-- Нравится и поделиться (переносится в модальное окно видео) -->
               <PageBlogLikeInModalVideo
                 :id="dataReview!.databaseId"
                 :count="condition.count ?? 0"
@@ -180,13 +163,9 @@ onMounted(() => {
             </div>
           </div>
 
-          <!-- Полоса -->
           <hr class="article_full__hr" />
 
-          <!--  -->
-          <!-- Виджеты -->
           <div class="rticle_full_useful">
-            <!-- Виджет "Было полезно" -->
             <PageReviewsPolezno
               :id="dataReview!.databaseId"
               :count="condition.count ?? 0"
@@ -195,20 +174,16 @@ onMounted(() => {
               @current-checked="condition.isChecked = $event"
             />
 
-            <!-- Виджет "Поделиться" -->
             <WidgetShare v-if="dataReview?.title" :title="dataReview.title" />
           </div>
 
-          <!-- Ссылка на проект -->
           <PageBlogProject
             v-if="dataReview?.fullOutputOfTheWork.zagolovok"
             :content="{ homePreview: dataReview!.homePreview, slug: dataReview!.slug }"
           />
         </div>
 
-        <!-- Виджеты -->
         <div class="page_video article_full__ditask">
-          <!-- Виджет "Еженедельный дайджест" -->
           <div class="article_full__digest">
             <div class="article_full__digest__title">Еженедельный дайджест</div>
 
@@ -223,7 +198,6 @@ onMounted(() => {
             </form>
           </div>
 
-          <!-- Виджет "Обсудить проект" -->
           <div class="article_full__task">
             <div class="article_full__task__title">
               Есть задача? <br />

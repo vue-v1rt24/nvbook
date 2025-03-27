@@ -55,7 +55,6 @@ defineProps<{
           {{ contacts.settingPochta }}
         </a>
 
-        <!-- Соцсети -->
         <ContactsSocial
           :vk="contacts.vkLink"
           :telegram="contacts.telegramLink"
@@ -70,7 +69,6 @@ defineProps<{
     </div>
   </div>
 
-  <!-- Оповещение о копировании ссылки -->
   <NotificationCopy class="notification_animate" />
 </template>
 
@@ -109,7 +107,6 @@ defineProps<{
   white-space: nowrap;
 }
 
-/*  */
 .notification_animate {
   position: fixed;
   bottom: 160px;

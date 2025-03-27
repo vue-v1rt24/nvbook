@@ -16,7 +16,6 @@ import 'swiper/css/scrollbar';
 
 import 'assets/css/swiper-global.css';
 
-// Получение данных из админки
 const { dataCompany } = await useCompanyQuery();
 
 //
@@ -31,7 +30,6 @@ const peopleSwiper = ref<Swiper | null>(null);
 //
 const mm = gsap.matchMedia();
 
-// Видео в модальном окне
 const videoPlayModal = (link: string) => {
   Fancybox.show(
     [
@@ -48,7 +46,6 @@ const videoPlayModal = (link: string) => {
   );
 };
 
-// Анимация текста
 let peopleLudiY = 400;
 let peopleTitleY = 280;
 let peopleTitleFontSize = '181px';
@@ -61,7 +58,6 @@ const animateText = () => {
       start: '300px bottom',
       end: '-250px 0',
       scrub: true,
-      // markers: true,
     },
   });
 
@@ -148,13 +144,10 @@ onUnmounted(() => {
 
 <template>
   <div :class="['page_company', { image_people_company: dataCompany?.imagePeopleCompany }]">
-    <!-- Хлебные крошки -->
     <Breadcrumbs :breadcrumbs="[{ title: 'Команда' }]" />
 
-    <!--  -->
     <div class="about_particles"></div>
 
-    <!-- Команда -->
     <section class="about_sec">
       <div class="container">
         <div class="about_download">
@@ -210,10 +203,8 @@ onUnmounted(() => {
       </div>
     </section>
 
-    <!-- Тексты -->
     <section class="about_desc_bx">
       <div class="container">
-        <!--  -->
         <div class="about_desc">
           <div class="about_desc_1">
             Мы придерживаемся ключевого принципа в нашей работе: найти решение, которое
@@ -279,7 +270,6 @@ onUnmounted(() => {
       </div>
     </section>
 
-    <!-- Команда -->
     <section class="people_sec">
       <div class="people_ludi">Люди</div>
 
@@ -330,7 +320,6 @@ onUnmounted(() => {
         </h2>
       </div>
 
-      <!-- Галерея -->
       <div class="container">
         <BlogSlider dark />
       </div>

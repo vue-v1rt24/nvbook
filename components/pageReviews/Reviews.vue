@@ -2,18 +2,14 @@
 import * as FancyboxAll from '@fancyapps/ui';
 import type { TypeReview } from '@/types/reviews.types';
 
-//
 const router = useRouter();
 
-//
 const props = defineProps<{
   review: TypeReview;
 }>();
 
-//
 const { Fancybox } = FancyboxAll;
 
-//
 const openFilePDF = () => {
   Fancybox.show([
     {

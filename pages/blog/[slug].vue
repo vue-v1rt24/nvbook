@@ -7,14 +7,10 @@ import '@/assets/css/video.css';
 //
 const route = useRoute();
 
-// Управление модальным окно формы
 const { isOpenModal } = useOutsideModal();
 
-// Запрос на получение записи
 const { article } = await useQueryOne(route.params.slug);
-// console.log(article);
 
-//
 if (!article) {
   throw createError({
     statusCode: 404,
@@ -28,7 +24,6 @@ useSeoMeta({
   description: article?.metaDesc,
 });
 
-// Если статья категории "Видео"
 const catVideo = computed(() => article?.categories[0].name === 'Видео');
 </script>
 
@@ -36,7 +31,6 @@ const catVideo = computed(() => article?.categories[0].name === 'Видео');
   <section class="article_full_bx">
     <div class="container container_blog">
       <div class="content_bx">
-        <!-- Содержание -->
         <div class="article_full">
           <NuxtLink to="/blog" class="parent_page">
             <svg width="14px" height="14px" class="arrow_back">
@@ -48,7 +42,6 @@ const catVideo = computed(() => article?.categories[0].name === 'Видео');
 
           <!--  -->
           <div class="article_full_top">
-            <!-- Метка категории -->
             <div class="article_full_tag">
               <div v-for="cat in article?.categories" :key="cat.name">
                 <span class="works__tag_hash">#</span>
@@ -56,10 +49,8 @@ const catVideo = computed(() => article?.categories[0].name === 'Видео');
               </div>
             </div>
 
-            <!-- Дата записи -->
             <div v-if="article?.date" class="article_full_data">{{ dateFormat(article.date) }}</div>
 
-            <!-- Счётчик просмотров записи -->
             <View
               v-if="article?.id"
               :id="article.id"
@@ -68,14 +59,11 @@ const catVideo = computed(() => article?.categories[0].name === 'Видео');
               keyStorage="view"
             />
 
-            <!-- Счётчик количества понравившимся статья -->
             <PageBlogViewLike />
           </div>
 
-          <!-- Заголовок -->
           <h1 class="article_full_h1">{{ article?.title }}</h1>
 
-          <!-- Вывод содержания если категория "Статьи" -->
           <PageBlogArticleOutput
             v-if="!catVideo && article?.id"
             :id="article.id"
@@ -84,7 +72,6 @@ const catVideo = computed(() => article?.categories[0].name === 'Видео');
             :blog-bylo-polezno="article.blogByloPolezno || 0"
           />
 
-          <!-- Вывод содержания если категория "Видео" -->
           <PageBlogVideoOutput
             v-if="catVideo && article?.id"
             :id="article.id"
@@ -95,14 +82,11 @@ const catVideo = computed(() => article?.categories[0].name === 'Видео');
           />
         </div>
 
-        <!-- Виджеты -->
         <div class="content_article__widgets">
-          <!-- Виджет "Содержание" в 1920px -->
           <div class="widgetContent1920">
             <PageBlogWidgetContent />
           </div>
 
-          <!-- Виджет "Обсудить проект" -->
           <div class="discuss_roject_1920 article_full__task">
             <div class="article_full__task__title">
               Есть задача? <br />
@@ -115,7 +99,6 @@ const catVideo = computed(() => article?.categories[0].name === 'Видео');
       </div>
     </div>
 
-    <!-- Другие статьи -->
     <div class="article_interesting">
       <div class="container container_blog">
         <h2 class="article_interesting__title">Ещё много интересного</h2>

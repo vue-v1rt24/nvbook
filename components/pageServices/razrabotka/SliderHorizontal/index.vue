@@ -4,21 +4,15 @@ import 'swiper/css';
 
 import type { TypeKakMyRabotaemVariantyItem } from '~/types/razrabotka.types';
 
-//
 const props = defineProps<{
   howWorkCards: TypeKakMyRabotaemVariantyItem[];
 }>();
 
-// console.log(props.howWorkCards);
-
-// Количество карточек
 const countCard = computed(() => props.howWorkCards.length);
 
-//
 const howWorkSwiper = ref<Swiper | null>(null);
 const swiperHowWork = ref<HTMLDivElement | null>(null);
 
-//
 onMounted(() => {
   if (swiperHowWork.value) {
     howWorkSwiper.value = new Swiper(swiperHowWork.value, {

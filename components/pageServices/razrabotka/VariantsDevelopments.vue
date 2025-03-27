@@ -4,20 +4,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import type { TypeRazrabotkaVarianty } from '~/types/razrabotka.types';
 
-//
 gsap.registerPlugin(ScrollTrigger);
 
-//
 const props = defineProps<{
   variantsDev: TypeRazrabotkaVarianty;
 }>();
 
-// console.log(props.variantsDev);
-
-//
 const mm = gsap.matchMedia();
 
-//
 onMounted(() => {
   mm.add('(min-width: 993px)', () => {
     const tl = gsap.timeline({
@@ -26,7 +20,6 @@ onMounted(() => {
         start: 'top center-=200',
         end: 'center center-=150',
         scrub: 1,
-        // markers: true,
       },
     });
 

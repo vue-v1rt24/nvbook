@@ -14,8 +14,8 @@ const emit = defineEmits<{
 
 //
 const isChecked = ref(false);
-const resetSelectVariant = ref(false); // для сброса вариантов
-const hiddenBlock = ref<HTMLDivElement | null>(null); // для показа и скрытия блока с вариантами
+const resetSelectVariant = ref(false);
+const hiddenBlock = ref<HTMLDivElement | null>(null);
 
 // Показ скрытой части (варианты)
 const changeCheckBox = () => {
@@ -124,12 +124,10 @@ watch(
   margin: 0 100px;
 }
 
-/*  */
 .checkbox {
   margin-right: 364px;
 }
 
-/* Чекбокс */
 .checkbox__inp {
   appearance: none;
   visibility: hidden;
@@ -142,7 +140,6 @@ watch(
   height: 46px;
   background-color: var(--colorDark3);
   border-radius: 23px;
-  /* cursor: pointer; */
   display: block;
   overflow: hidden;
   transition: 0.5s ease-in;
@@ -168,9 +165,7 @@ watch(
   background-color: white;
   transform: translateX(40px);
 }
-/* /Чекбокс */
 
-/*  */
 .calculation__variants_wrap {
   height: 0;
   overflow: hidden;
@@ -183,7 +178,6 @@ watch(
   padding-bottom: 54px;
 }
 
-/* ==================== Медиа запросы */
 @media (max-width: 1800px) {
   .checkbox {
     margin-right: 0;

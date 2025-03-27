@@ -2,10 +2,8 @@
 import { type TypeHome } from '@/types/home-page/homepage.types';
 import '@/assets/css/works.css';
 
-//
 const { graphqlUrl } = useRuntimeConfig().public;
 
-// Получение данных
 const { data } = await useFetch(graphqlUrl, {
   query: {
     query: `
@@ -81,7 +79,6 @@ const { data } = await useFetch(graphqlUrl, {
   transform(data) {
     const d = data as TypeHome;
 
-    // Добавление в объект 'uslugi' свойство 'selected'
     for (const item of d.data.pageBy.contentHomePage.nextProjectCostVarianty) {
       for (const service of item.uslugi) {
         service['selected'] = false;
@@ -112,9 +109,6 @@ const { data } = await useFetch(graphqlUrl, {
   },
 });
 
-// console.log(data.value);
-
-//
 useSeoMeta({
   title: () => data.value!.metaTitle,
   description: () => data.value!.metaDescription,
@@ -127,16 +121,6 @@ useSeoMeta({
     <PageHomeServices :service-categories="data!.serviceCategories" :services="data!.services" />
     <PageHomeWorks />
     <PageHomeSphere v-if="data?.sphere" :sphere="data.sphere" />
-
-    <!-- Раздел: Рассчитаем стоимость вашего будущего проекта -->
-    <!-- <PageHomeCostProject
-      v-if="data?.nextProjectCostVarianty"
-      :title="data.nextProjectCostZagolovok"
-      :desc="data.nextProjectCostOpisanie"
-      :next-project-vars="data.nextProjectCostVarianty"
-    /> -->
-
-    <!-- Раздел: Как мы работаем? -->
     <PageHomeHowWork v-if="data?.howWork" :how-works="data.howWork" />
   </div>
 </template>

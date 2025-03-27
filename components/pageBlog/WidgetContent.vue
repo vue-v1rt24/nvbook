@@ -45,9 +45,6 @@ onMounted(() => {
 
 <style lang="css" scoped>
 .article_full_content_page {
-  /* position: absolute;
-  top: 57px;
-  right: -470px; */
   width: 450px;
   background-color: var(--colorBirch);
   padding: 32px;
@@ -75,11 +72,8 @@ onMounted(() => {
   margin-bottom: 18px;
 }
 
-/* ================= Медиа запросы */
-
 @media (max-width: 1500px) {
   .article_full_content_page {
-    /* position: static; */
     width: 100%;
   }
 }

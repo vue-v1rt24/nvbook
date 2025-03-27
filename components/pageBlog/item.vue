@@ -11,10 +11,8 @@ const emit = defineEmits<{
   changeTag: [title: string];
 }>();
 
-// Директива для показа скрытого текста заголовка
 const vTextAnimate = visibleHiddenText;
 
-// Соединение классов (для фильтрации)
 const classNameFilter = computed(() =>
   props.blog.categories.reduce((acc, item) => (acc += ` ${item.name}`), ''),
 );

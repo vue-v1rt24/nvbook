@@ -8,25 +8,20 @@ const props = defineProps<{
   nextProjectVars: TypeNextProjectCostVarianty[];
 }>();
 
-// Управление модальным окном
 const { isOpenModal, dopDate, isVisibleBtnProject, isSendFormSuccess } = useOutsideModal();
 
 //
 const dataCheckedVariant = ref<boolean[]>([]);
 const isCheckedParentVariant = ref(false);
 
-// Сброс данных расчёта
 const resetDopData = () => {
   dopDate().value = {};
 };
 
 //
 const selectVariants = (idx: number, val: boolean) => {
-  // Помещаем выбранные варианты с их значениями в массив.
-  // Если такой вариант уже добавлен, то будет изменено его значение
   dataCheckedVariant.value[idx] = val;
 
-  // Проверяем значения вариантов
   const isSelect = dataCheckedVariant.value.some((item) => item);
 
   if (!isSelect) {
@@ -39,7 +34,6 @@ const selectVariants = (idx: number, val: boolean) => {
     return;
   }
 
-  // Запускаем анимацию для изменения текста кнопки формы
   if (isCheckedParentVariant.value) {
     gsap.to('.calculation__btn .blue_btn__title', {
       keyframes: [
@@ -57,7 +51,6 @@ const selectVariants = (idx: number, val: boolean) => {
   }
 };
 
-// Формирование данных для отправки на почту
 const setFormData = (data: TypeNextProjectCostVarianty[]) => {
   resetDopData();
 
@@ -72,9 +65,7 @@ const setFormData = (data: TypeNextProjectCostVarianty[]) => {
   }
 };
 
-// Открытие модального окна и отправка в него данных расчёта
 const openModal = () => {
-  // Отправка данных в форму модального окна
   if (isCheckedParentVariant.value) {
     const isCheckedChildVariant = props.nextProjectVars.some((item) =>
       item.uslugi.some((us) => us.selected),
@@ -87,14 +78,12 @@ const openModal = () => {
     }
   }
 
-  // Скрытие/Показ кнопок в модальном окне
   if (isCheckedParentVariant.value) {
     isVisibleBtnProject().value = true;
   } else {
     isVisibleBtnProject().value = false;
   }
 
-  // Открытие модального окна
   isOpenModal().value = true;
 };
 </script>
@@ -166,7 +155,6 @@ const openModal = () => {
   width: 307px;
 }
 
-/* ==================== Медиа запросы */
 @media (max-width: 1600px) {
   .calculation__header {
     flex-direction: column;

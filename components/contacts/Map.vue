@@ -10,15 +10,12 @@ import {
 
 import type { LngLat } from '@yandex/ymaps3-types';
 
-//
 const map = shallowRef<null | YMap>(null);
 const address = ref<HTMLDivElement | null>(null);
 
-// Для карты
 let zoom = ref(17);
 const center = ref<LngLat>([41.91638975529478, 45.000137210410344]);
 
-//
 onMounted(() => {
   // Возврат к исходному положению карты
   address.value?.addEventListener('click', async () => {
@@ -52,7 +49,6 @@ onMounted(() => {
         width="100%"
       >
         <yandex-map-default-scheme-layer />
-        <!-- Метка -->
         <yandex-map-default-features-layer />
         <yandex-map-default-marker
           :settings="{
@@ -60,7 +56,6 @@ onMounted(() => {
             color: '#40b6b7',
           }"
         />
-        <!-- /Метка -->
       </yandex-map>
     </div>
 
@@ -92,12 +87,10 @@ onMounted(() => {
   cursor: none !important;
 }
 
-/* Цвет карты */
 .ymaps-2-1-79-ground-pane {
   filter: grayscale(1);
 }
 
-/*  */
 .data_company__address {
   position: absolute;
   bottom: 40px;

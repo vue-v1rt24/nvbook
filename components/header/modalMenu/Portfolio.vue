@@ -3,18 +3,15 @@ defineProps<{
   footer?: boolean;
 }>();
 
-//
 const router = useRouter();
 const route = useRoute();
 const activeMenuPortfolio = ref<string>('');
 
-//
 const menuPortfolio = (title: string, idx: number) => {
   activeMenuPortfolio.value = title;
   router.push({ path: '/portfolio', query: { catMenu: encodeURI(title), idx } });
 };
 
-//
 watchEffect(() => {
   if (!route.path.includes('portfolio')) {
     activeMenuPortfolio.value = '';

@@ -1,5 +1,3 @@
-// Даём активный класс родительскому пункту меню на его внутренних страницах
-
 export const useChildrenActiveMenu = () => {
   const route = useRoute();
   const blogChildrenActiveMenu = () => useState(() => false);

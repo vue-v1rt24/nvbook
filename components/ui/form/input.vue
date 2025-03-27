@@ -6,17 +6,13 @@ const props = defineProps<{
   type: 'text' | 'email' | 'tel' | 'file' | 'checkbox' | 'radio' | 'textarea';
 }>();
 
-// const modelValue = defineModel<string | string[] | File>({ default: '' });
 const modelValue = defineModel<string | string[] | File | null>({ default: null });
-
-//
 const fileInp = ref<HTMLInputElement | null>(null);
 
 const btnTrigger = () => {
   fileInp.value?.click();
 };
 
-// Загрузка файла
 const loadFile = (event: Event) => {
   const target = event.target as HTMLInputElement;
 
@@ -89,7 +85,6 @@ const loadFile = (event: Event) => {
       />
     </div>
 
-    <!--  -->
     <div v-else class="field field_text">
       <label class="field__label" :for="label">{{ label }}</label>
 
@@ -134,7 +129,6 @@ const loadFile = (event: Event) => {
   outline: 2px solid #c20000;
 }
 
-/*  */
 .field_textarea .field__inp {
   height: 174px;
 }
@@ -143,7 +137,6 @@ const loadFile = (event: Event) => {
   max-width: 563px;
 }
 
-/* textarea */
 .field__inp__textarea::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -171,7 +164,6 @@ const loadFile = (event: Event) => {
   border: none;
 }
 
-/* checkbox */
 .field_checkbox {
   width: fit-content;
   font-weight: 300;
@@ -202,12 +194,10 @@ const loadFile = (event: Event) => {
   background-position: center center;
 }
 
-/* radio */
 .field_radio .field_checkbox__inp {
   border-radius: 50%;
 }
 
-/* file */
 .field_file__inp {
   display: none;
 }
@@ -242,7 +232,6 @@ const loadFile = (event: Event) => {
   transform: translateY(-3px);
 }
 
-/* ===================================== */
 @media (max-width: 576px) {
   .field__label {
     font-size: 16px;

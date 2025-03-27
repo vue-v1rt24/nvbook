@@ -21,8 +21,6 @@ const viewport = useViewport();
         </p>
       </div>
     </div>
-
-    <!-- <UiLinkText link="/vacancies" title="Смотреть все вакансии" /> -->
   </div>
 </template>
 

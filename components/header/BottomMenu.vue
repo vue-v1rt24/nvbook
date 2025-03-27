@@ -4,19 +4,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { upPage, movingContact } from '~/utils/utils';
 
 gsap.registerPlugin(ScrollTrigger);
-
-//
 const route = useRoute();
-
-//
 let mm = gsap.matchMedia();
-
-//
 const menuButton = ref<HTMLDivElement | null>(null);
 const arrowUp = ref<HTMLDivElement | null>(null);
 const menu = ref<HTMLDivElement | null>(null);
 const startProjectBtn = ref<HTMLDivElement | null>(null);
-
 const wArrowUp = ref<number | null>(null);
 const wMenu = ref<number | null>(null);
 const wStartProjectBtn = ref<number | null>(null);
@@ -37,7 +30,6 @@ const openMenuSticky = () => {
 
 //
 onMounted(() => {
-  // Анимация кнопок меню / разъезд кнопок
   const refreshData = () => {
     wArrowUp.value = arrowUp.value?.offsetWidth ?? 0;
     wMenu.value = menu.value?.offsetWidth ?? 0;

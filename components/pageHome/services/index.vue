@@ -10,19 +10,14 @@ import 'assets/css/swiper-global.css';
 
 import { type TypeService, type TypeServiceCategories } from '@/types/home-page/services.types';
 
-//
 gsap.registerPlugin(ScrollTrigger);
-
-//
 let mm = gsap.matchMedia();
 
-//
 const props = defineProps<{
   serviceCategories: TypeServiceCategories[];
   services: TypeService[];
 }>();
 
-//
 const razrabotka: TypeService[] = [];
 const branding: TypeService[] = [];
 const fv: TypeService[] = [];
@@ -45,10 +40,8 @@ for (const service of props.services) {
   }
 }
 
-//
 const servicesBx = ref<HTMLDivElement | null>(null);
 
-//
 onMounted(() => {
   if (matchMedia('(min-width: 769px)').matches) {
     if (servicesBx.value) {
@@ -77,15 +70,6 @@ onMounted(() => {
         },
         '-=3',
       );
-
-      /* tlServices.to(
-        '.service__item_3',
-        {
-          y: 0,
-          opacity: 1,
-        },
-        '-=3',
-      ); */
 
       tlServices.to(
         ['.title_h4_animate', '.description_animate', '.services__cards__vars_animate'],
@@ -118,7 +102,6 @@ onMounted(() => {
     }
   }
 
-  // ================= Слайдер услуг на главной
   const swiperServicesBx = document.querySelector<HTMLDivElement>('.swiper_services')!;
 
   if (swiperServicesBx) {
@@ -181,13 +164,6 @@ onMounted(() => {
               :service="branding"
             />
 
-            <!-- <PageHomeServicesItem
-              item-class="service__item_3"
-              img="prodvizhenie.svg"
-              :title="serviceCategories[1].name"
-              :service="prodvizhenie"
-            /> -->
-
             <PageHomeServicesItem
               item-class="service__item_4"
               img="Video.svg"
@@ -229,7 +205,6 @@ onMounted(() => {
   }
 }
 
-/* ==================== Медиа запросы */
 @media (max-width: 1918px) {
   .services__cards {
     transform: translateY(-100px);

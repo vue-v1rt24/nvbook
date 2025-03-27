@@ -1,13 +1,9 @@
 <script setup lang="ts">
 import { gsap } from 'gsap';
 
-//
 const theme = useTheme();
-
-//
 const mm = gsap.matchMedia();
 
-//
 onMounted(() => {
   mm.add('(max-width: 1200px)', () => {
     const dataCompanyLeft = document.querySelector('.data_company__left');
@@ -32,14 +28,10 @@ onMounted(() => {
 
       <div class="data_company">
         <div class="data_company__left">
-          <!-- Карта -->
           <ContactsMap />
-
-          <!-- Вакансии -->
           <ContactsVacancyContacts />
         </div>
 
-        <!-- Свяжитесь с нами -->
         <ContactsForm />
       </div>
     </div>
@@ -123,8 +115,6 @@ onMounted(() => {
 
   @media (max-width: 1200px) {
     display: block;
-    /* grid-template-columns: 1fr; */
-    /* gap: 40px; */
   }
 
   @media (max-width: 576px) {

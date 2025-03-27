@@ -3,7 +3,6 @@ import { useModalMenu } from '@/composables/useModalMenu';
 import { copyBuffer } from '~/utils/copy-email.utils';
 import { movingContact } from '~/utils/utils';
 
-//
 defineProps<{
   logo?: string;
   nomerTelefona?: string;
@@ -19,14 +18,8 @@ defineProps<{
   dprofileLink?: string;
 }>();
 
-// Управление модальным окно формы
 const { isOpenModal } = useOutsideModal();
-
-// Даём активный класс меню "Блог" и "Отзывы", когда находимся на их внутренних страницах
 const { blogChildrenActiveMenu } = useChildrenActiveMenu();
-const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
-
-//
 const { resizeHeightMenu, addRemoveClassBody, resetMenu } = useModalMenu();
 const headerMenu = ref<HTMLDivElement | null>(null);
 const subMenu = ref<HTMLDivElement | null>(null);
@@ -59,10 +52,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- Фон модального меню -->
   <div @click="closeClick" class="backDropMenu"></div>
 
-  <!-- Появляющиеся меню -->
   <div class="header__menu" ref="headerMenu">
     <div class="header__menu_top">
       <div v-if="logo" class="header__menu_top_img"><img :src="logo" alt="" /></div>
@@ -87,9 +78,6 @@ onMounted(() => {
             <li class="menu-item">
               <NuxtLink to="/foto-video">Фото/видео</NuxtLink>
             </li>
-            <!-- <li class="menu-item">
-              <NuxtLink to="/services/promotion">Продвижение</NuxtLink>
-            </li> -->
           </ul>
         </li>
 
@@ -105,17 +93,6 @@ onMounted(() => {
                 Блог
               </NuxtLink>
             </li>
-            <!-- <li class="menu-item">
-              <NuxtLink to="/reviews" :class="{ active: reviewChildrenActiveMenu().value }">
-                Отзывы
-              </NuxtLink>
-            </li> -->
-            <!-- <li class="menu-item">
-              <NuxtLink to="/vacancies">Вакансии</NuxtLink>
-            </li> -->
-            <!-- <li class="menu-item">
-              <NuxtLink to="/products">Наша продукция</NuxtLink>
-            </li> -->
             <li class="menu-item">
               <a @click.prevent="movingContact" href="#">Контакты</a>
             </li>
@@ -229,7 +206,6 @@ onMounted(() => {
 </template>
 
 <style lang="css" scoped>
-/* Фон модального меню */
 .backDropMenu {
   display: none;
   position: fixed;
@@ -244,7 +220,6 @@ onMounted(() => {
   display: block;
 }
 
-/*  */
 .header__menu {
   position: fixed;
   top: 32px;
@@ -270,13 +245,11 @@ onMounted(() => {
   margin-bottom: 62px;
 }
 
-/*  */
 .header__menu_center {
   display: flex;
   column-gap: 89px;
 }
 
-/*  */
 .header__menu_ul {
   display: flex;
   column-gap: 53px;
@@ -314,7 +287,6 @@ onMounted(() => {
   padding: 9px 0;
 }
 
-/*  */
 .header__menu_contacts {
   display: flex;
   column-gap: 80px;
@@ -331,14 +303,12 @@ onMounted(() => {
   }
 }
 
-/*  */
 .header__menu_phones {
   width: 300px;
   display: flex;
   flex-direction: column;
   row-gap: 38px;
 
-  /*  */
   @media (max-width: 700px) {
     row-gap: 24px;
     margin-bottom: 32px;
@@ -367,7 +337,6 @@ onMounted(() => {
   color: var(--colorGray);
 }
 
-/*  */
 .header__menu_links {
   display: flex;
   flex-direction: column;
@@ -412,7 +381,6 @@ onMounted(() => {
   fill: white;
 }
 
-/* ==================== Медиа запросы */
 @media (max-width: 1500px) {
   .header__menu {
     width: 800px;

@@ -1,18 +1,11 @@
 <script setup lang="ts">
-// Получение данных
 const { dataContacts } = await useContacts();
-// console.log(dataContacts.value);
-
-//
 const theme = useTheme();
 </script>
 
 <template>
   <div :class="['job_bx', { dark: theme === 'dark', light: theme === 'light' }]">
-    <!-- Вакансии -->
     <ContactsVacancies />
-
-    <!-- Контакты -->
     <ContactsContactBlock v-if="dataContacts?.contacts" :contacts="dataContacts.contacts" />
   </div>
 </template>

@@ -1,18 +1,10 @@
 <script setup lang="ts">
 import { upPage } from '~/utils/utils';
 
-//
 const viewport = useViewport();
-
-// Управление модальным окно формы
 const { isOpenModal } = useOutsideModal();
-
-//
 const theme = useTheme();
-
-// Даём активный класс меню "Блог" и "Отзывы", когда находимся на их внутренних страницах
 const { blogChildrenActiveMenu } = useChildrenActiveMenu();
-const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
 </script>
 
 <template>
@@ -43,9 +35,6 @@ const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
               <li class="menu-item">
                 <NuxtLink to="/foto-video">Фото/видео</NuxtLink>
               </li>
-              <!-- <li class="menu-item">
-                <NuxtLink to="/promotion">Продвижение</NuxtLink>
-              </li> -->
             </ul>
           </li>
 
@@ -58,17 +47,6 @@ const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
                   Блог
                 </NuxtLink>
               </li>
-              <!-- <li class="menu-item">
-                <NuxtLink to="/reviews" :class="{ active: reviewChildrenActiveMenu().value }">
-                  Отзывы
-                </NuxtLink>
-              </li> -->
-              <!-- <li class="menu-item">
-                <NuxtLink to="/vacancies">Вакансии</NuxtLink>
-              </li> -->
-              <!-- <li class="menu-item">
-                <NuxtLink to="/products">Наша продукция</NuxtLink>
-              </li> -->
               <li class="menu-item">
                 <a href="#">Контакты</a>
               </li>
@@ -104,7 +82,6 @@ const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
       </div>
     </div>
 
-    <!-- Модальное окно формы -->
     <LazyOutsideModal />
   </footer>
 </template>
@@ -139,7 +116,6 @@ const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
   }
 }
 
-/*  */
 .footer__logo_bx {
   display: flex;
   flex-direction: column;
@@ -167,7 +143,6 @@ const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
   }
 }
 
-/*  */
 .footer__logo {
   @media (max-width: 700px) {
     margin-bottom: 240px;
@@ -190,7 +165,6 @@ const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
   }
 }
 
-/*  */
 .footer__menu {
   display: flex;
   column-gap: 103px;
@@ -223,7 +197,6 @@ const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
   color: var(--accentColor);
 }
 
-/*  */
 .footer__links {
   display: flex;
   flex-direction: column;
@@ -257,7 +230,6 @@ const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
   }
 }
 
-/*  */
 .footer__politico a {
   font-weight: 300;
   font-size: 16px;

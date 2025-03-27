@@ -4,7 +4,7 @@ import { type TypeUslugi } from '@/types/home-page/nextProjectCostVarianty.types
 //
 const props = defineProps<{
   usluga: TypeUslugi;
-  reset: boolean; // для сброса вариантов
+  reset: boolean;
 }>();
 
 //
@@ -79,7 +79,6 @@ watch(
   border-color: var(--accentColor);
 }
 
-/* Чекбокс-галка */
 .check {
   width: fit-content;
   display: inline-flex;
@@ -95,7 +94,6 @@ watch(
   height: 22px;
   border-radius: 6px;
   background-color: var(--colorDark4);
-  /* cursor: pointer; */
   transition: background-color 0.3s, background-image 0.3s;
 }
 
@@ -129,9 +127,7 @@ watch(
 .check__inp:checked ~ .check__title_y {
   display: block;
 }
-/* /Чекбокс-галка */
 
-/* ==================== Медиа запросы */
 @media (max-width: 992px) {
   .calculation__variants__item {
     border-radius: 32px;

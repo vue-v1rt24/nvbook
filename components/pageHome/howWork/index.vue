@@ -4,30 +4,20 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { type TypeHowWork } from '~/types/home-page/howWork.types';
 
-//
 const props = defineProps<{
   howWorks: TypeHowWork;
 }>();
 
-// console.log(props.howWorks);
-
-//
 gsap.registerPlugin(ScrollTrigger);
-
-//
 const viewport = useViewport();
-
-// Для счётчика
 const clientsPercent = reactive({ count: 0 });
 
 //
 onMounted(() => {
-  // Для блока со счётчиком
   const tlPercent = gsap.timeline({
     scrollTrigger: {
       trigger: '.how_work_clients__percent',
       start: 'center center+=300',
-      // markers: true,
     },
   });
 
@@ -36,14 +26,12 @@ onMounted(() => {
     count: props.howWorks.howWorkProcent,
   });
 
-  // Заголовок
   gsap.to('.how_work_clients__title span', {
     y: 0,
     ease: 'power1.out',
     scrollTrigger: {
       trigger: '.how_work_clients',
       start: 'top top+=200',
-      // markers: true,
     },
   });
 });
@@ -56,19 +44,16 @@ onMounted(() => {
         <h2 class="title_52">Как мы работаем?</h2>
       </div>
 
-      <!--  -->
       <template v-if="howWorks.howWorkCards">
         <PageHomeHowWorkSliderDuga
           v-if="viewport.isGreaterThan('screen1200')"
           :how-work-cards="howWorks.howWorkCards"
         />
 
-        <!--  -->
         <PageHomeHowWorkSliderHorizontal v-else :how-work-cards="howWorks.howWorkCards" />
       </template>
     </div>
 
-    <!--  -->
     <div class="how_work_clients">
       <div class="container">
         <div class="how_work_clients__percent">{{ Math.floor(clientsPercent.count) }}%</div>
@@ -76,7 +61,6 @@ onMounted(() => {
           <span>{{ howWorks.howWorkProcentTitle }}</span>
         </div>
 
-        <!--  -->
         <PageHomeHowWorkLogos v-if="howWorks.howWorkLogos" :logos="howWorks.howWorkLogos" />
       </div>
     </div>

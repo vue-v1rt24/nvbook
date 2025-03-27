@@ -1,13 +1,9 @@
 <script setup lang="ts">
 import { localStorageUtil } from '~/utils/localStorage.utils';
 
-//
 const { domains } = useRuntimeConfig().public;
-
-//
 const isShowSoc = useIsShowSoc();
 
-//
 const props = defineProps<{
   id: number | undefined;
   slug: string | undefined;
@@ -21,7 +17,6 @@ const slugLink = ref('');
 const isWhatRequest = ref(false);
 const isCountVisible = ref(false);
 
-// Блок "Поделиться"
 const fooSoc = (evt: Event) => {
   const target = evt.target as HTMLElement;
 
@@ -41,7 +36,6 @@ const getStorage = () => {
   return localStorageUtil.getStorage(nameStorage) || {};
 };
 
-// При начальной загрузки страницы
 const loadData = () => {
   if (props.slug) {
     const res = getStorage();
@@ -64,7 +58,6 @@ watchEffect(() => {
   }
 });
 
-// Запрос на сервер для изменения количества понравившимся
 const toggleLicked = async () => {
   if (props.slug) {
     isWhatRequest.value = !isWhatRequest.value;

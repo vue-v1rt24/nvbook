@@ -8,18 +8,12 @@ const props = defineProps<{
   article: TypePortfolio;
 }>();
 
-//
 const emit = defineEmits<{
   changeTag: [title: string];
 }>();
 
-// Директива для показа скрытого текста заголовка в карточках работ
 const vTextAnimate = visibleHiddenText;
-
-//
 const video = ref<HTMLVideoElement | null>(null);
-
-//
 const isDirect = computed(() => props.article.homePreview.vyborText);
 const direct = computed(() => (isDirect.value ? 'direct' : 'video'));
 
@@ -33,7 +27,6 @@ const classesFilter = computed(() => {
   return cl;
 });
 
-// Запуск видео
 let isLoad: any = null;
 
 const loadVideo = () => {
@@ -76,7 +69,6 @@ const videoHover = () => {
         height="450"
       />
 
-      <!-- По наведению текст -->
       <div v-if="isDirect" class="works__item_more_detailed_bx">
         <NuxtLink :to="`/portfolio/${props.article.slug}`" class="works__item_more_detailed__link">
           <div class="works__item_more_detailed__title" v-if="article.homePreview.zagolovokHover">
@@ -104,7 +96,6 @@ const videoHover = () => {
         </NuxtLink>
       </div>
 
-      <!-- По наведению видео -->
       <div v-else class="works__item_more_detailed_bx" @mouseover="videoHover">
         <NuxtLink
           :to="`/portfolio/${props.article.slug}`"

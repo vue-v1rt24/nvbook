@@ -8,7 +8,7 @@ import '@/assets/css/works.css';
 
 //
 const props = defineProps<{
-  namePage: string; // название страницы, где будут открываться записи в модальном окне
+  namePage: string;
 }>();
 
 //
@@ -18,13 +18,10 @@ const router = useRouter();
 //
 const open = ref(false);
 const dataWork = useState<TypeWork>('work');
-const filterInstance = ref<any>(null); // для объекта плагина фильтра
+const filterInstance = ref<any>(null);
 const filterJs = ref<HTMLDivElement | null>(null);
-
-// Получение данных
 const { data: works } = await useFetch<TypeWorkAll[]>('/api/widgetWork/widgetWork');
 
-// Подключение файла для фильтрации сортировки
 useHead({
   script: [
     {
@@ -36,13 +33,11 @@ useHead({
 
 //
 onMounted(() => {
-  // Установка значения для фильтра при загрузке страницы
   setTimeout(() => {
     useActiveBtnCategoryPortfolio().value.child = 'Сайт на CMS Tilda';
     filterInstance.value.filter(`.${replaceSpace(useActiveBtnCategoryPortfolio().value.child)}`);
   }, 1000);
 
-  // Фильтрация работ
   //@ts-ignore
   filterInstance.value = mixitup(filterJs.value);
 });
@@ -53,21 +48,17 @@ onUnmounted(() => {
   useActiveBtnCategoryPortfolio().value.child = 'Все';
 });
 
-// Клики по кнопкам фильтрации
 const changeTitleBtmSub = (title: string) => {
   useActiveBtnCategoryPortfolio().value.child = title;
   filterInstance.value.filter(`.${replaceSpace(title)}`);
 };
 
-// Изменение URL
 const changeRoutePath = (link: string) => {
   router.push(`/${props.namePage}/${link}`);
 };
 
-// Запрос на получение одной записи работы
 const getWork = async (id: number) => {
   if (import.meta.server) {
-    // Получение данных если есть параметр в адресной строке
     const { data } = await useFetch('/api/widgetWork/articleSingleModal', {
       query: {
         id,
@@ -87,7 +78,6 @@ const getWork = async (id: number) => {
 
     return data.value;
   } else {
-    // Получение данных по клику
     const data = await $fetch<TypeArticleModal>('/api/widgetWork/articleSingleModal', {
       query: { id },
     });
@@ -103,7 +93,6 @@ const getWork = async (id: number) => {
   }
 };
 
-// Вывод работы в модальном окне
 const showWork = async () => {
   try {
     if (!works.value?.length) return;
@@ -133,13 +122,11 @@ const showWork = async () => {
   }
 };
 
-// После закрытия модального окна
 const closeWork = () => {
   router.push(`/${props.namePage}`);
   open.value = false;
 };
 
-// Отслеживание параметра в адресной строке
 watchEffect(async () => {
   if ('slug' in route.params) {
     await showWork();

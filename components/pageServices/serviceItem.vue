@@ -57,20 +57,15 @@ defineProps<{
   }
 }
 
-/*  */
-
 .service__right_link {
   position: absolute;
   inset: 0;
   z-index: 1;
 }
 
-/*  */
-
 .service__right_img {
   flex-shrink: 0;
 
-  /*  */
   @media (max-width: 576px) {
     width: 34px;
   }

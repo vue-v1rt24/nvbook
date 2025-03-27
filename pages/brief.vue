@@ -3,7 +3,6 @@ import type { UiModal } from '#components';
 import { useVuelidate } from '@vuelidate/core';
 import { required, email, minLength } from '@vuelidate/validators';
 
-// Управление модальным окно формы
 const { isOpenModal } = useOutsideModal();
 
 //

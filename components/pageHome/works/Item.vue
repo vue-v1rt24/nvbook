@@ -2,23 +2,17 @@
 import visibleHiddenText from '@/directives/visibleHiddenText';
 import { type TypeBlogWorkTransform } from '@/types/home-page/works.types';
 
-//
 const props = defineProps<{
   item: TypeBlogWorkTransform;
 }>();
 
-//
 const emit = defineEmits<{
   routePath: [link: string];
 }>();
 
-// Директива для показа скрытого текста заголовка
 const vTextAnimate = visibleHiddenText;
-
-//
 const video = ref<HTMLVideoElement | null>(null);
 
-//
 const isDirect = computed(() => props.item.homePreview.vyborText);
 const direct = computed(() => (isDirect.value ? 'direct' : 'video'));
 const link = computed(() => {
@@ -33,7 +27,6 @@ const isBlog = computed(() =>
 
 const hoverTitle = computed(() => (isBlog.value ? 'Смотреть' : 'Смотреть проект'));
 
-// Запуск видео
 let isLoad: any = null;
 
 const loadVideo = () => {
@@ -64,7 +57,6 @@ const videoHover = () => {
   }
 };
 
-// Открытие модального окна с работой
 const sendWork = (link: string) => {
   emit('routePath', link);
 };
@@ -81,7 +73,6 @@ const sendWork = (link: string) => {
         height="450"
       />
 
-      <!-- По наведению текст -->
       <div v-if="isDirect" class="works__item_more_detailed_bx">
         <NuxtLink v-if="isBlog" :to="link" class="works__item_more_detailed__link">
           <div class="works__item_more_detailed__title" v-if="item.homePreview.zagolovokHover">
@@ -105,7 +96,6 @@ const sendWork = (link: string) => {
           </div>
         </NuxtLink>
 
-        <!--  -->
         <a
           v-else
           @click.prevent="sendWork(link)"
@@ -134,7 +124,6 @@ const sendWork = (link: string) => {
         </a>
       </div>
 
-      <!-- По наведению видео -->
       <div class="works__item_more_detailed_bx" v-else @mouseover="videoHover">
         <NuxtLink v-if="isBlog" :to="link" class="works__item_more_detailed__link_video">
           <video
@@ -148,7 +137,6 @@ const sendWork = (link: string) => {
           ></video>
         </NuxtLink>
 
-        <!--  -->
         <a
           v-else
           @click.prevent="sendWork(link)"
@@ -172,7 +160,6 @@ const sendWork = (link: string) => {
         {{ item.homePreview.zagolovok }}
       </NuxtLink>
 
-      <!-- Теги -->
       <div class="works__tags">
         <span v-for="cat in item.categories?.nodes" :key="cat.name" class="works__tag">
           <NuxtLink

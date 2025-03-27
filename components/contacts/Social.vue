@@ -10,7 +10,6 @@ defineProps<{
   dprofile: string;
 }>();
 
-//
 const theme = useTheme();
 </script>
 

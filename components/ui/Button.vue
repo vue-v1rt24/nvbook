@@ -37,7 +37,6 @@ const emit = defineEmits<{
 </template>
 
 <style lang="css" scoped>
-/* Синяя кнопка */
 .blue_btn {
   font-family: var(--fontFamily-Unbounded);
   font-size: 24px;
@@ -65,9 +64,7 @@ const emit = defineEmits<{
   height: 15px;
   fill: white;
 }
-/* /Синяя кнопка */
 
-/* Белая кнопка */
 .btn_white {
   color: var(--accentColor);
   background-color: var(--colorTextWhite);
@@ -84,9 +81,7 @@ const emit = defineEmits<{
 .btn_white:active {
   background-color: #e8e2e2;
 }
-/* /Белая кнопка */
 
-/* Прозрачная кнопка */
 .btn_transparent {
   color: var(--colorDark3);
   background-color: transparent;
@@ -109,9 +104,7 @@ const emit = defineEmits<{
 .btn_transparent:active {
   background-color: transparent;
 }
-/* /Прозрачная кнопка */
 
-/*  */
 .wrap_arrow {
   display: flex;
   justify-content: center;
@@ -147,7 +140,6 @@ const emit = defineEmits<{
   }
 }
 
-/* ==================== Медиа запросы */
 @media (max-width: 576px) {
   .blue_btn {
     font-size: 18px;

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useGetParentsCategoryPortfolio } from '~/composables/portfolios/useGetParentsCategoryPortfolio';
 import { useAllPortfolio } from '~/composables/portfolios/useAllPortfolio';
-import { useGetWork as getWork } from '~/composables/portfolios/useGetWork'; // Запрос на получение одной записи работы
+import { useGetWork as getWork } from '~/composables/portfolios/useGetWork';
 
 import { useActiveBtnCategoryPortfolio } from '~/composables/useLocalStorages';
 import type { TypeWork } from '@/types/home-page/works.types';

@@ -16,7 +16,6 @@ const { blogChildrenActiveMenu, servicesChildrenActiveMenu } = useChildrenActive
 // Управление модальным окно формы
 const { isOpenModal } = useOutsideModal();
 
-// Запрос на получение данных
 const settingsQuery = {
   query: `
     {
@@ -154,7 +153,6 @@ watchEffect(() => {
     </div>
   </header>
 
-  <!-- Появляющиеся меню -->
   <HeaderModalMenu
     :logo="data?.logotipVModalnomMenyu"
     :nomer-telefona="data?.hotLine"
@@ -170,7 +168,6 @@ watchEffect(() => {
     :dprofile-link="data?.dprofileLink"
   />
 
-  <!-- Нижнее меню -->
   <HeaderBottomMenu />
 </template>
 
@@ -312,7 +309,6 @@ watchEffect(() => {
   border-radius: 18px;
 }
 
-/* ==================== Медиа запросы */
 @media (max-width: 1200px) {
   .header__nav {
     display: none;

@@ -1,7 +1,4 @@
 <script setup lang="ts">
-// import { useQueryFile } from '~/composables/services/useQueryFile';
-
-//
 const router = useRouter();
 const route = useRoute();
 
@@ -11,29 +8,10 @@ useSeoMeta({
   description: 'Описание',
 });
 
-// Получение данных
-// const { dataServiceFile } = await useQueryFile(route.params.slug);
-
-// Скачивание файла
 const loadFile = async () => {
-  // Из админки
-  /* if (!dataServiceFile.value?.filePath) return;
-
-  const link = document.createElement('a');
-  link.setAttribute('href', dataServiceFile.value.filePath);
-  link.setAttribute('target', '_blank');
-  link.setAttribute('download', '');
-  link.style.display = 'none';
-
-  document.body.append(link);
-  link.click();
-  link.remove(); */
-
-  // Локально
   const link = document.createElement('a');
   link.setAttribute('href', '/presents_parana_it.pdf');
   link.setAttribute('target', '_blank');
-  // link.setAttribute('download', '');
   link.style.display = 'none';
 
   document.body.append(link);
@@ -44,7 +22,6 @@ const loadFile = async () => {
 
 <template>
   <section class="service_item">
-    <!-- Хлебные крошки -->
     <Breadcrumbs :breadcrumbs="[{ title: 'Услуги', link: '/services' }, { title: 'Брендинг' }]" />
 
     <!--  -->

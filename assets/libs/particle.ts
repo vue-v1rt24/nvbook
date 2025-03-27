@@ -2,11 +2,7 @@ export const particle = () => {
   const canvas = document.querySelector<HTMLCanvasElement>('.particle')!;
   const decisionsSec = document.querySelector<HTMLDivElement>('.decisions_sec')!;
   const ctx: any = canvas.getContext('2d');
-
   const RESOLUTION = 1;
-
-  // let w = (canvas.width = window.innerWidth * RESOLUTION);
-  // let h = (canvas.height = window.innerHeight * RESOLUTION);
   let w = (canvas.width = window.innerWidth * RESOLUTION);
   let h = (canvas.height = decisionsSec.offsetHeight * RESOLUTION);
 
@@ -128,7 +124,6 @@ export const particle = () => {
 
   loop();
 
-  // Движение мыши
   const mousemoveFoo = (e: MouseEvent) => {
     const mouseX = e.layerX * RESOLUTION;
     const mouseY = e.layerY * RESOLUTION;
@@ -146,16 +141,13 @@ export const particle = () => {
 
   window.addEventListener('mousemove', mousemoveFoo);
 
-  // Изменение размера экрана
   const resizeFoo = () => {
     w = canvas.width = window.innerWidth * RESOLUTION;
-    // h = canvas.height = window.innerHeight * RESOLUTION;
     h = canvas.height = decisionsSec.offsetHeight * RESOLUTION;
   };
 
   window.addEventListener('resize', resizeFoo);
 
-  // Останавливает события и анимацию
   const stopActions = () => {
     window.cancelAnimationFrame(requestID);
     window.removeEventListener('mousemove', mousemoveFoo);
@@ -163,7 +155,6 @@ export const particle = () => {
     requestID = 0;
   };
 
-  //
   return {
     stopActions,
   };

@@ -33,14 +33,12 @@ const mouseoverFoo = (evt: any) => {
   cursor.value!.classList.remove('hidden');
   aura.value!.classList.remove('hidden');
 
-  // Наведение на блок с классом "about_video"
   if (target.closest('.about_video')) {
     cursor.value!.classList.add('video');
     aura.value!.classList.add('hidden');
     return;
   }
 
-  // Наведение на остальные блоки
   if (
     target.closest('a') ||
     target.closest('button:not(.btn_gray)') ||
@@ -64,14 +62,12 @@ const mouseoutFoo = (evt: any) => {
   cursor.value!.classList.add('hidden');
   aura.value!.classList.add('hidden');
 
-  // Уход с блока с классом "about_video"
   if (target.closest('.about_video')) {
     cursor.value!.classList.remove('video');
     aura.value!.classList.remove('hidden');
     return;
   }
 
-  // Уход с остальных элементов
   if (
     target.closest('a') ||
     target.closest('button:not(.btn_gray)') ||
@@ -91,13 +87,8 @@ const mouseoutFoo = (evt: any) => {
 //
 onMounted(() => {
   if (!isMobile()) {
-    // Перемещение курсора
     document.addEventListener('mousemove', mousemoveFoo);
-
-    // Наведение курсора
     document.addEventListener('mouseover', mouseoverFoo);
-
-    // Уход курсора
     document.addEventListener('mouseout', mouseoutFoo);
   }
 });
@@ -105,16 +96,10 @@ onMounted(() => {
 //
 onUnmounted(() => {
   if (!isMobile()) {
-    // Перемещение курсора
     document.removeEventListener('mousemove', mousemoveFoo);
-
-    // Наведение курсора
     document.removeEventListener('mouseover', mouseoverFoo);
-
-    // Уход курсора
     document.removeEventListener('mouseout', mouseoutFoo);
 
-    //
     posEl = 0;
   }
 });
@@ -122,7 +107,6 @@ onUnmounted(() => {
 
 <template>
   <div class="cursor" ref="cursor">
-    <!-- Кнопка наведения на блок с видео -->
     <button class="about_video_btn">
       <svg class="about_video_btn_play">
         <use xlink:href="/img/sprite.svg#play"></use>
@@ -134,12 +118,10 @@ onUnmounted(() => {
 </template>
 
 <style lang="css" scoped>
-/* Скрываем курсор браузера */
 :global(*, *::before, *::after) {
   cursor: none;
 }
 
-/* Курсор */
 .cursor,
 .aura {
   position: fixed;
@@ -180,7 +162,6 @@ onUnmounted(() => {
   transform: translate(-50%, -50%) scale(0.001);
 }
 
-/* Видео кнопка на странице "О компании" */
 .about_video_btn {
   position: absolute;
   top: 50%;
@@ -204,8 +185,6 @@ onUnmounted(() => {
   fill: var(--accentColor2);
   transform: translate(3px, 2px);
 }
-
-/* ============ Медиа запросы */
 
 @media (hover: none) and (pointer: coarse) {
   *,

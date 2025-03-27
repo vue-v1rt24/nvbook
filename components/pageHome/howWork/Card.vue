@@ -26,7 +26,6 @@ defineProps<{
 .card {
   --padding: 52px;
 
-  /*  */
   position: absolute;
   top: 0;
   left: 0;
@@ -44,19 +43,16 @@ defineProps<{
   overflow: hidden;
   transition: background-color 0.3s;
 
-  /*  */
   &.active {
     background-color: white;
   }
 
-  /*  */
   @media (max-width: 1200px) {
     position: static;
     background-color: white;
     margin-left: 0;
   }
 
-  /*  */
   @media (max-width: 1024px) {
     --padding: 34px;
     width: 410px;
@@ -71,7 +67,6 @@ defineProps<{
     border-radius: 24px;
   }
 
-  /*  */
   &::before {
     content: '';
     position: absolute;
@@ -86,7 +81,6 @@ defineProps<{
   }
 }
 
-/*  */
 .card__counter {
   font-weight: 700;
   font-size: 20px;
@@ -97,7 +91,6 @@ defineProps<{
   column-gap: 26px;
   margin-bottom: 52px;
 
-  /*  */
   @media (max-width: 1200px) {
     margin-bottom: 24px;
   }
@@ -113,17 +106,14 @@ defineProps<{
   background-color: var(--accentColor);
 }
 
-/*  */
 .card__text {
   color: white;
   transition: color 0.3s;
 
-  /*  */
   .active & {
     color: var(--colorDark3);
   }
 
-  /*  */
   @media (max-width: 1200px) {
     color: var(--colorDark3);
   }
@@ -135,7 +125,6 @@ defineProps<{
   line-height: 100%;
   margin-bottom: 24px;
 
-  /*  */
   @media (max-width: 1200px) {
     font-size: 34px;
     margin-bottom: 14px;
@@ -153,7 +142,6 @@ defineProps<{
   line-height: 130%;
   opacity: 0.8;
 
-  /*  */
   @media (max-width: 1200px) {
     font-size: 18px;
   }

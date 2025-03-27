@@ -7,10 +7,8 @@ type TypePrivacyPolicy = {
   };
 };
 
-// Получение ссылки на API
 const { graphqlUrl } = useRuntimeConfig().public;
 
-// Получение данных
 const { data: privacyPolicy } = await useFetch<TypePrivacyPolicy>(graphqlUrl, {
   query: {
     query: `
@@ -31,7 +29,6 @@ useSeoMeta({
 
 <template>
   <div class="privacy_policy">
-    <!-- Хлебные крошки -->
     <Breadcrumbs :breadcrumbs="[{ title: 'Политика конфиденциальности' }]" />
 
     <!--  -->

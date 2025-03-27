@@ -11,30 +11,22 @@ const { isOpenModal } = useOutsideModal();
 </script>
 
 <template>
-  <!-- Виджет "Поделиться" -->
   <WidgetShare :title />
 
-  <!-- Виджет "Содержание" в 1500px -->
   <div class="widgetContent1500">
     <PageBlogWidgetContent />
   </div>
 
-  <!-- Содержание из админки -->
   <div class="article_full_content wp_content" v-html="content"></div>
 
-  <!-- Полоса -->
   <hr class="article_full__hr" />
 
-  <!-- Виджеты -->
   <div class="rticle_full_useful">
-    <!-- Виджет "Было полезно" -->
     <PageBlogPolezno :id="id" :count="blogByloPolezno" title="Было полезно" />
 
-    <!-- Виджет "Поделиться" -->
     <WidgetShare class="article_full_bottom_share" :title />
   </div>
 
-  <!-- Виджет "Еженедельный дайджест" -->
   <div class="article_full__ditask">
     <div class="article_full__digest">
       <div class="article_full__digest__title">Еженедельный дайджест</div>
@@ -47,7 +39,6 @@ const { isOpenModal } = useOutsideModal();
       </form>
     </div>
 
-    <!-- Виджет "Обсудить проект" -->
     <div class="discuss_roject_1500 article_full__task">
       <div class="article_full__task__title">
         Есть задача? <br />

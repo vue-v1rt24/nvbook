@@ -15,15 +15,12 @@ const emit = defineEmits<{
   changeTagSub: [title: string];
 }>();
 
-// Подсчёт всех записей блога
 const allCount = computed(() => props.categories.reduce((acc, item) => (acc += item.count), 0));
 
-// Выбор кнопок родительской категории
 const changeNameBtm = (name: string, idx?: number) => {
   emit('changeTag', name, idx);
 };
 
-// Выбор кнопок дочерней категории
 const changeNameBtmSub = (name: string) => {
   emit('changeTagSub', name);
 };
@@ -61,7 +58,6 @@ const changeNameBtmSub = (name: string) => {
     </template>
   </div>
 
-  <!-- Подкатегории -->
   <div
     v-if="(idxCategory || idxCategory === 0) && categories[idxCategory].children?.nodes.length"
     class="works_tabs_children"

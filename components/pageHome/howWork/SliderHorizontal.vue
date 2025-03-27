@@ -15,14 +15,10 @@ const props = defineProps<{
   }[];
 }>();
 
-// Количество карточек
 const countCard = computed(() => props.howWorkCards.length);
-
-//
 const howWorkSwiper = ref<Swiper | null>(null);
 const swiperHowWork = ref<HTMLDivElement | null>(null);
 
-//
 onMounted(() => {
   if (swiperHowWork.value) {
     howWorkSwiper.value = new Swiper(swiperHowWork.value, {
@@ -40,7 +36,6 @@ onMounted(() => {
   }
 });
 
-//
 onUnmounted(() => {
   if (howWorkSwiper.value?.destroy) {
     howWorkSwiper.value.destroy();
@@ -73,11 +68,9 @@ onUnmounted(() => {
   padding: 0 20px;
 }
 
-/*  */
 .swiper-slide {
   width: 510px;
 
-  /*  */
   @media (max-width: 1024px) {
     width: 410px;
   }

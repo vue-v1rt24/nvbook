@@ -1,6 +1,4 @@
 <script setup lang="ts">
-// Нравится и поделиться (переносится в модальное окно видео)
-
 import { localStorageUtil } from '~/utils/localStorage.utils';
 
 //

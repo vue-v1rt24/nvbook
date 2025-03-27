@@ -2,7 +2,7 @@
 import * as FancyboxAll from '@fancyapps/ui';
 import type { TypeVideo } from '@/types/blog-page/blogHome.types';
 
-import 'assets/css/video-fancybox.css'; // ещё используется в: pages\reviews\[slug].vue
+import 'assets/css/video-fancybox.css';
 
 //
 const props = defineProps<{
@@ -28,7 +28,6 @@ const condition = ref({
 
 //
 onMounted(() => {
-  // Модальное окно видео
   if (videoFancyboxBx.value) {
     videoFancyboxBx.value.addEventListener('click', (evt) => {
       const target = evt.target as HTMLDivElement;
@@ -56,7 +55,6 @@ onMounted(() => {
           closeButton: false,
           on: {
             done() {
-              // Клонируем и вставляем в модальное окно видео всё содержимое из компонента: LikeInModalVideo.vue
               const videoFancyboxModal =
                 document.querySelector<HTMLDivElement>('.video_fancybox_modal')!;
 
@@ -65,15 +63,12 @@ onMounted(() => {
 
               fancyboxContent.append(cloneVideoHart);
 
-              // Кликаем по "Нравится" в модальном окне
               workFullArticleHart.addEventListener('click', () => {
                 workFullArticleHart.classList.toggle('active');
                 workFullArticleHartHtml.classList.toggle('active');
 
-                // Кликаем по кнопке "Нравится". Она находится в компоненте: Polezno.vue
                 document.querySelector<HTMLDivElement>('.rticle_full_useful__btn')?.click();
 
-                // Изменение количества понравившимся в модальном окне
                 if (workFullArticleHart.classList.contains('active')) {
                   count.textContent = String(+count.textContent! + 1);
                 } else {
@@ -82,7 +77,6 @@ onMounted(() => {
               });
             },
             close() {
-              // Записываем значение из модального окна
               condition.value.count = +count.textContent!;
             },
           },
@@ -107,10 +101,8 @@ onMounted(() => {
           <img class="video_img" :src="content.izobrazhenieVideo.node.mediaItemUrl" alt="" />
         </a>
 
-        <!-- Содержание из админки -->
         <div class="article_full_p desc_video wp_content" v-html="contentRedactor"></div>
 
-        <!-- Нравится и поделиться (переносится в модальное окно видео) -->
         <PageBlogLikeInModalVideo
           :id="id"
           :count="condition.count ?? 0"
@@ -119,13 +111,9 @@ onMounted(() => {
       </div>
     </div>
 
-    <!-- Полоса -->
     <hr class="article_full__hr" />
 
-    <!--  -->
-    <!-- Виджеты -->
     <div class="rticle_full_useful">
-      <!-- Виджет "Было полезно" -->
       <PageBlogPolezno
         :id="id"
         :count="condition.count ?? 0"
@@ -134,20 +122,16 @@ onMounted(() => {
         @current-checked="condition.isChecked = $event"
       />
 
-      <!-- Виджет "Поделиться" -->
       <WidgetShare class="article_full_bottom_share" :title />
     </div>
 
-    <!-- Ссылка на проект -->
     <PageBlogProject
       v-if="content.blogVybereteOtzyv"
       :content="content.blogVybereteOtzyv.nodes[0]"
     />
   </div>
 
-  <!-- Виджеты -->
   <div class="page_video article_full__ditask">
-    <!-- Виджет "Еженедельный дайджест" -->
     <div class="article_full__digest">
       <div class="article_full__digest__title">Еженедельный дайджест</div>
 
@@ -160,7 +144,6 @@ onMounted(() => {
       </form>
     </div>
 
-    <!-- Виджет "Обсудить проект" -->
     <div class="article_full__task">
       <div class="article_full__task__title">
         Есть задача? <br />

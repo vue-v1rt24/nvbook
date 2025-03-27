@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { TypeOneScreen } from '~/types/razrabotka.types';
 
-//
 defineProps<{
   data: TypeOneScreen;
 }>();
@@ -48,8 +47,6 @@ defineProps<{
 .first_section {
   position: relative;
 }
-
-/*  */
 
 .about_particles_container {
   position: relative;
@@ -119,15 +116,18 @@ defineProps<{
     background-repeat: no-repeat;
     background-size: 100%;
     margin-top: -65px;
+  }
 
-    /*  */
-    @media (max-width: 768px) {
+  @media (max-width: 768px) {
+    &::before {
       width: 800px;
       height: 800px;
       margin-left: -50px;
     }
+  }
 
-    @media (max-width: 576px) {
+  @media (max-width: 576px) {
+    &::before {
       width: 600px;
       height: 600px;
       margin-left: -120px;
@@ -157,8 +157,6 @@ defineProps<{
   }
 }
 
-/*  */
-
 .instruments {
   display: flex;
 
@@ -177,8 +175,6 @@ defineProps<{
   }
 }
 
-/*  */
-
 .first_section__line_text_wrap {
   position: absolute;
   top: 0;
@@ -186,7 +182,6 @@ defineProps<{
   width: 200%;
   transform: translateX(-50%) translateY(146px);
   pointer-events: none;
-  /* outline: 1px solid red; */
 
   /*  */
   @media (max-width: 1920px) {

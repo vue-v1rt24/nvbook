@@ -7,7 +7,6 @@ const { Fancybox } = FancyboxAll;
 //
 const modalOpen = () => {
   Fancybox.show([{ src: '#modal', type: 'inline' }], {
-    // closeButton: false,
     autoFocus: false,
     dragToClose: false,
   });
