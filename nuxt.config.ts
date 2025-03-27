@@ -83,7 +83,7 @@ export default defineNuxtConfig({
   },
 
   yandexMetrika: {
-    id: '100256014',
+    id: '98315354',
     webvisor: true,
   },
 
