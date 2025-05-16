@@ -3,7 +3,15 @@ const route = useRoute();
 const theme = useTheme();
 
 //
-const paths = ['comanda', 'branding', 'foto-video', 'products', 'vacancies', 'privacy', 'success'];
+const paths = [
+  '/comanda',
+  '/branding',
+  '/foto-video',
+  '/products',
+  '/vacancies',
+  '/privacy',
+  '/success',
+];
 
 //
 useSeoMeta({
